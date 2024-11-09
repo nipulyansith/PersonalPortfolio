@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useTransition,useState } from 'react'
 import TabButton from './TabButton'
+import { motion } from 'framer-motion';
 
 const AboutSection = () => {
 
@@ -55,29 +56,31 @@ const AboutSection = () => {
     ]
 
   return (
-    <section className='text-white'>
-        <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-24 sm:py-16 xl:px-16 '>
-            <Image src='/images/about2.jpg' alt='about' className='rounded-lg' width={600} height={500}/>
+    <motion.section
+    initial={{ opacity: 0, y: 50 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    className="text-white"
+>
+    <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-24 sm:py-16 xl:px-16'>
+        <Image src='/images/about2.jpg' alt='about' className='rounded-lg' width={600} height={500} />
 
-            <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
-                <h2 className='text-4xl font-bold text-white mb-4 mt-6'>About Me</h2>
-                <p className='text-base md:text-lg'>I’m an Information Systems (Hons) undergraduate at the University of Colombo School of 
-                    Computing with a passion for developing innovative software solutions. Skilled in Next.js, 
-                    React Native, Express, Node, and more, I’ve worked on projects like ParkEase and GoviSaviya. 
-                    I'm seeking opportunities to further apply my skills in a software engineering role 
-                    and contribute to impactful digital transformation projects.</p>
+        <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
+            <h2 className='text-4xl font-bold text-white mb-4 mt-6'>About Me</h2>
+            <p className='text-base md:text-lg'>
+                I’m an Information Systems (Hons) undergraduate at the University of Colombo School of Computing with a passion for developing innovative software solutions. Skilled in Next.js, React Native, Express, Node, and more, I’ve worked on projects like ParkEase and GoviSaviya. I'm seeking opportunities to further apply my skills in a software engineering role and contribute to impactful digital transformation projects.
+            </p>
 
-                    <div className='flex flex-row justify-start mt-8'>
-                        <TabButton selectTab={()=> handleTabChange("skills")} active={tab==="skills"}>Skills</TabButton>
-                        <TabButton selectTab={()=> handleTabChange("education")} active={tab==="education"}>Education</TabButton>
-                        <TabButton selectTab={()=> handleTabChange("certification")} active={tab==="certification"}>Certifications</TabButton>      
-                    </div>
-
-                    <div className="mt-8">{TAB_DATA.find((t)=>t.id === tab).content}</div>
+            <div className='flex flex-row justify-start mt-8'>
+                <TabButton selectTab={() => handleTabChange("skills")} active={tab === "skills"}>Skills</TabButton>
+                <TabButton selectTab={() => handleTabChange("education")} active={tab === "education"}>Education</TabButton>
+                <TabButton selectTab={() => handleTabChange("certification")} active={tab === "certification"}>Certifications</TabButton>      
             </div>
 
+            <div className="mt-8">{TAB_DATA.find((t) => t.id === tab).content}</div>
         </div>
-    </section>
+    </div>
+</motion.section>
   )
 
 
