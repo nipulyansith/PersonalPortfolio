@@ -60,16 +60,30 @@ const AboutSection = () => {
     initial={{ opacity: 0, y: 50 }} 
     animate={{ opacity: 1, y: 0 }} 
     transition={{ duration: 0.6, ease: "easeOut" }}
-    className="text-white"
+    className="text-white mt-2"
+    id="about"
 >
     <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-24 sm:py-16 xl:px-16'>
-        <Image src='/images/about2.jpg' alt='about' className='rounded-lg' width={600} height={500} />
+        <Image src='/images/nipulai3.jpg' alt='about' className='rounded-lg' width={600} height={500} />
 
         <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
             <h2 className='text-4xl font-bold text-white mb-4 mt-6'>About Me</h2>
-            <p className='text-base md:text-lg'>
-                I’m an Information Systems (Hons) undergraduate at the University of Colombo School of Computing with a passion for developing innovative software solutions. Skilled in Next.js, React Native, Express, Node, and more, I’ve worked on projects like ParkEase and GoviSaviya. I'm seeking opportunities to further apply my skills in a software engineering role and contribute to impactful digital transformation projects.
-            </p>
+            <p className='text-base md:text-md'>
+            Nipul Yansith is a dedicated Information Systems undergraduate at the University of 
+            Colombo School of Computing, with a keen interest in creating efficient and impactful 
+            software applications. His technical expertise spans across Next.js, React Native, 
+            Express, and Node, along with hands-on experience in various full-stack projects. 
+            Nipul has developed solutions like ParkEase, an urban parking management system, 
+            and GoviSaviya, a platform connecting farmers directly with buyers, highlighting 
+            his commitment to solving real-world problems through technology.
+
+            </p>  <br /> <p className='text-base md:text-md'>
+  Beyond coding, Nipul is deeply passionate about continuous learning and exploring new technologies. 
+  He approaches every project with a problem-solving mindset, striving to create impactful digital solutions. 
+  Whether taking on leadership roles or collaborating as part of a team, Nipul is dedicated to driving innovation 
+  and making meaningful contributions through his work.
+</p>
+
 
             <div className='flex flex-row justify-start mt-8'>
                 <TabButton selectTab={() => handleTabChange("skills")} active={tab === "skills"}>Skills</TabButton>

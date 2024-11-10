@@ -9,10 +9,11 @@ import MenuOverlay from './MenuOverlay'
 
 
 const navlinks = [
-    {title: '#about', path: 'About'},
-    {title: '#projects', path: 'Projects'},
-    {title: '#contact', path: 'Contact'}
+    {title: 'About', href: 'about'},
+    {title: 'Projects', href: 'projects'},
+    {title: 'Contact', href: 'contact'}
 ]
+
 
 const Navbar = () => {
 
@@ -38,9 +39,10 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block sm:w-auto" id="navbar">
                 <ul className='flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0 '>
-                   {navlinks.map((link, index) => (
-                       <NavLink key={index} href={link.title} title={link.path}/>
-                   ))}
+                {navlinks.map((link, index) => (
+    <NavLink key={index} href={`#${link.href}`} title={link.title} />
+))}
+
                     
                 </ul>
             </div>

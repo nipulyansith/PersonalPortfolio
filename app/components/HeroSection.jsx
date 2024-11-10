@@ -42,17 +42,17 @@ const HeroSection = () => {
         />
       </h1>
       <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-        I’m an Information Systems (Hons) undergraduate at the University of
-        Colombo School of Computing with a passion for developing innovative
-        software solutions. Skilled in Next.js, React Native, Express, Node, and
-        more, I’ve worked on projects like ParkEase and GoviSaviya. I'm seeking
-        opportunities to further apply my skills in a software engineering role
-        and contribute to impactful digital transformation projects.
+      Hi, I'm Nipul Yansith, an Information Systems (Hons) undergraduate at the University of 
+      Colombo School of Computing. I’m passionate about building innovative software solutions 
+      that make an impact. With a solid foundation in technologies like Next.js, React Native, 
+      Express, and Node, I’ve worked on projects such as ParkEase (An urban parking management system) and 
+      GoviSaviya (A farmer-buyer marketplace). I’m always seeking new challenges where I can 
+      contribute to digital transformation and explore the latest in software development
       </p>
       <div>
-        <button className="w-full sm:w-fit px-6 py-3 font-medium rounded-full mr-4 text-white bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 bg-white hover:bg-slate-200">
+        {/* <button className="w-full sm:w-fit px-6 py-3 font-medium rounded-full mr-4 text-white bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 bg-white hover:bg-slate-200">
           Hire Me
-        </button>
+        </button> */}
 
         <button className="w-full sm:w-fit px-1 py-1 rounded-full bg-transparent hover:bg-slate-800 border-white mt-3 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500">
           <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
