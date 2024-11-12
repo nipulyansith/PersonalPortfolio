@@ -54,6 +54,7 @@ const HeroSection = () => {
           Hire Me
         </button> */}
 
+{/* This is a comment */}
         <button className="w-full sm:w-fit px-1 py-1 rounded-full bg-transparent hover:bg-slate-800 border-white mt-3 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500">
           <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
             Download CV
