@@ -10,35 +10,35 @@ const EmailSection = () => {
     const [email, setEmail] = useState(false)
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const data = {
-            email: e.target.email.value,   // This will now correctly reference the email input
-            subject: e.target.subject.value, // This will reference the subject input
-            message: e.target.message.value // This will reference the message textarea
+        e.preventDefault();
+        try {
+            const data = {
+                email: e.target.email.value,
+                subject: e.target.subject.value,
+                message: e.target.message.value
+            };
+    
+            console.log("this is normal data",data)
+
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            console.log("this is normal data",response.body);
+    
+            if (response.ok) {
+                alert('Message Sent Successfully');
+                setEmail(true);
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            alert('An error occurred: ' + error.message);
         }
+    };
     
-        const JSONdata = JSON.stringify(data)
-        const endpoint = "/api/send"
-    
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSONdata
-        }
-    
-        const response = await fetch(endpoint, options)
-        const resData = await response.json()
-        console.log(resData)
-    
-        if (response.status === 200) {
-            alert('Message Sent Successfully')
-            setEmail(true)
-        } else {
-            alert('Message failed to send. Please try again later.')
-        }
-    }
     
 
     return (
