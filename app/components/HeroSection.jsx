@@ -42,11 +42,11 @@ const HeroSection = () => {
         />
       </h1>
       <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-      Hi, I'm Nipul Yansith, an Information Systems (Hons) undergraduate at the University of 
-      Colombo School of Computing. I’m passionate about building innovative software solutions 
+      Hi, I&apos;m Nipul Yansith, an Information Systems (Hons) undergraduate at the University of 
+      Colombo School of Computing. I&apos;m passionate about building innovative software solutions 
       that make an impact. With a solid foundation in technologies like Next.js, React Native, 
-      Express, and Node, I’ve worked on projects such as ParkEase (An urban parking management system) and 
-      GoviSaviya (A farmer-buyer marketplace). I’m always seeking new challenges where I can 
+      Express, and Node, I&apos;ve worked on projects such as ParkEase (An urban parking management system) and 
+      GoviSaviya (A farmer-buyer marketplace). I&apos;m always seeking new challenges where I can 
       contribute to digital transformation and explore the latest in software development
       </p>
       <div>

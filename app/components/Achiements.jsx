@@ -20,7 +20,7 @@ const AchievementsSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Certifications */}
           <div className="bg-[#2C2F3F] p-6 rounded-lg shadow-xl backdrop-blur-md backdrop-brightness-125 bg-opacity-40 transform transition duration-300 hover:scale-105 hover:bg-[#3A405A]">
-            <h3 className='text-xl font-semibold text-white mb-4 text-purple-400 tracking-wide'>
+            <h3 className='text-xl font-semibold  mb-4 text-purple-500 tracking-wide'>
               Certifications
             </h3>
             <ul className='text-[#E1E8F0] space-y-3'>
@@ -38,12 +38,12 @@ const AchievementsSection = () => {
 
           {/* Academic Achievements */}
           <div className="bg-[#2C2F3F] p-6 rounded-lg shadow-xl backdrop-blur-md backdrop-brightness-125 bg-opacity-40 transform transition duration-300 hover:scale-105 hover:bg-[#3A405A]">
-            <h3 className='text-xl font-semibold text-white mb-4 text-purple-400 tracking-wide'>
+            <h3 className='text-xl font-semibold  mb-4 text-purple-500 tracking-wide'>
               Academic Achievements
             </h3>
             <ul className='text-[#E1E8F0] space-y-3'>
               <li className="flex items-center text-lg">
-                <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Dean’s List - BSc. (Hons) in Information Systems - For academic performance 2024
+                <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Dean&apos;s List - BSc. (Hons) in Information Systems - For academic performance 2024
               </li>
               <li className="flex items-center text-lg">
                 <span className="text-purple-500 text-lg font-medium mr-2">✔</span> National ICT Awards NBQSA - Finalists 2024
@@ -53,7 +53,7 @@ const AchievementsSection = () => {
 
           {/* Extra-Curricular Activities */}
           <div className="bg-[#2C2F3F] p-6 rounded-lg shadow-xl backdrop-blur-md backdrop-brightness-125 bg-opacity-40 transform transition duration-300 hover:scale-105 hover:bg-[#3A405A]">
-            <h3 className='text-xl font-semibold text-white mb-4 text-purple-400 tracking-wide'>
+            <h3 className='text-xl font-semibold  mb-4 text-purple-500 tracking-wide'>
               Extra-Curricular Activities
             </h3>
             <ul className='text-[#E1E8F0] space-y-3'>
@@ -61,7 +61,7 @@ const AchievementsSection = () => {
                 <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Secretary, Rekha - Music Circle UCSC 2024 - Present
               </li>
               <li className="flex items-center text-lg">
-                <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Junior Treasurer, Students’ Union UCSC 2023 - 2024
+                <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Junior Treasurer, Students&apos; Union UCSC 2023 - 2024
               </li>
               <li className="flex items-center text-lg">
                 <span className="text-purple-500 text-lg font-medium mr-2">✔</span> Incoming Global Volunteer Team Leader, AIESEC in Colombo Central 2022
