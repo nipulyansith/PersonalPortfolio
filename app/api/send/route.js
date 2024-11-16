@@ -16,7 +16,7 @@ export async function POST(req) {
           <h2 style={{ color: '#4A90E2' }}>New Contact Form Submission</h2>
           <p>You have received a new message from your portfolio contact form:</p>
           <p>
-            <strong>Sender's Email:</strong> {email}
+            <strong>Sender&apos;s Email:</strong> {email}
             <br />
             <strong>Subject:</strong> {subject}
             <br />

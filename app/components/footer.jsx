@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Image from 'next/image'; // Import the Image component
 
 const Footer = () => {
   return (
@@ -8,7 +9,13 @@ const Footer = () => {
         
         {/* Logo Section */}
         <div className='flex items-center mb-4 md:mb-0'>
-          <img src="images/nipullogo.png" alt="Nipul Yansith Logo" className='w-20' />
+          <Image 
+            src="/images/nipullogo.png" 
+            alt="Nipul Yansith Logo" 
+            width={80} // Provide explicit width
+            height={80} // Provide explicit height
+            className='w-20' // You can adjust or remove this class
+          />
         </div>
 
         {/* Navigation Links */}
@@ -40,4 +47,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;
