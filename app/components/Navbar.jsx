@@ -18,7 +18,7 @@ const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
 
   return (
-    <nav className='fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-100 py-2 pr-8 z-50'>
+    <nav className='fixed mx-auto border border-[#33353F] top-0 left-0 right-0 bg-[#121212] bg-opacity-100 py-2 pr-8 z-50'>
       <div className='flex flex-wrap items-center justify-between mx-auto px-4 py-2'>
         <Link href={"/"} className=''>
           <Image
