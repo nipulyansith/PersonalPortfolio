@@ -52,7 +52,26 @@ const projectData = [
     tag: ["all", "web"],
     previewUrl: '/',
     gitUrl: '/'
+  },,
+  {
+    id: 6,
+    title: 'ParkEase Warden MobileApp',
+    description: 'The ParkEase warden app lets wardens assign parking spots, monitor parking activity, and validate payments. It streamlines vehicle tracking and ensures efficient parking enforcement using a QR code system.',
+    imgUrl: '/images/pem.png',
+    tag: ["all", "mobile"],
+    previewUrl: '/',
+    gitUrl: '/'
   },
+
+  {
+    id: 7,
+    title: 'SmartStock',
+    description: 'A Laravel-based inventory management system that tracks items, categories, suppliers, and stock levels, offering features like real-time updates, low-stock alerts, reporting, and role-based access for efficient inventory control.',
+    imgUrl: '/images/inv.png',
+    tag: ["all", "web"],
+    previewUrl: '/',
+    gitUrl: '/'
+  }
 ];
 
 const ProjectsSection = () => {
