@@ -14,12 +14,36 @@ const HeroSection = () => {
         <div className="absolute right-10 top-10 h-96 w-96 rounded-full bg-fuchsia-600/10 blur-3xl" />
       </div>
 
-      {/* Keep the wide feel like your original */}
       <div className="px-4 sm:px-8 lg:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-12 items-center gap-10">
-          {/* LEFT */}
+        <div className="flex flex-col sm:flex-row items-center gap-10">
+
+
+          {/* RIGHT IMAGE — shows first on mobile */}
           <motion.div
-            className="col-span-7 place-self-center text-center sm:text-left"
+            className="order-1 sm:order-2 col-span-5 flex justify-center sm:justify-end mt-6 sm:mt-0"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-[28px] bg-gradient-to-tr from-purple-500/20 to-fuchsia-500/10 blur-2xl" />
+
+              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
+                <Image
+                  src="/images/final.jpg"
+                  alt="hero image"
+                  width={380}
+                  height={380}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* LEFT TEXT — shows second on mobile */}
+          <motion.div
+            className="order-2 sm:order-1 col-span-7 text-center sm:text-left"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -51,14 +75,13 @@ const HeroSection = () => {
               </span>
             </h1>
 
-            <p className="text-[#ADB7BE] text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl">
+            <p className="text-[#ADB7BE] text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto sm:mx-0">
               I’m a fourth-year Information Systems (Hons) undergraduate at the
               University of Colombo School of Computing. I build clean,
               reliable full-stack applications using React, Next.js, Angular,
               and Node.js, focused on solving real-world problems.
             </p>
 
-            {/* Buttons (remove CV safely) */}
             <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-start justify-center">
               <a
                 href="#projects"
@@ -76,30 +99,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* RIGHT */}
-          <motion.div
-            className="col-span-5 place-self-center mt-6 sm:mt-0"
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <div className="relative">
-              {/* Glow */}
-              <div className="absolute -inset-6 rounded-[28px] bg-gradient-to-tr from-purple-500/20 to-fuchsia-500/10 blur-2xl" />
-
-              {/* Frame */}
-              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-                <Image
-                  src="/images/final.jpg"
-                  alt="hero image"
-                  width={380}
-                  height={380}
-                  className="h-auto w-full object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useTransition, useState } from "react";
+import React, { useTransition, useState, useEffect } from "react";
+
 import Image from "next/image";
 import TabButton from "./TabButton";
 import { motion } from "framer-motion";
 
 // ✅ Icons (react-icons)
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiNextdotjs, SiAngular, SiPostgresql, SiMongodb } from "react-icons/si";
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaMobileAlt  } from "react-icons/fa";
+import { SiJavascript, SiTypescript, SiNextdotjs, SiAngular, SiPostgresql, SiMongodb,  SiMysql, SiExpress, SiPhp, SiLaravel, SiOpencv } from "react-icons/si"
+import { TbApi } from "react-icons/tb";
 
 const AboutSection = () => {
   const [tab, setTab] = useState("education");
@@ -17,6 +19,16 @@ const AboutSection = () => {
     startTransition(() => setTab(id));
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+  const mq = window.matchMedia("(max-width: 768px)"); // md breakpoint
+  const update = () => setIsMobile(mq.matches);
+  update();
+  mq.addEventListener("change", update);
+  return () => mq.removeEventListener("change", update);
+}, []);
+
   const TAB_DATA = [
     {
       title: "education",
@@ -24,52 +36,69 @@ const AboutSection = () => {
       content: (
         <div className="space-y-6 border-l border-purple-500/40 pl-6">
           <div className="relative">
-            <div className="absolute -left-[13px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
+            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
+            
             <h4 className="text-lg font-semibold text-white">
-              University of Colombo School of Computing
+               University of Colombo School of Computing
             </h4>
             <p className="text-sm text-purple-300">BSc (Hons) Information Systems</p>
             <p className="text-sm text-white/60">2022 – Present</p>
           </div>
 
           <div className="relative">
-            <div className="absolute -left-[13px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
+            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
             <h4 className="text-lg font-semibold text-white">Ananda College</h4>
             <p className="text-sm text-white/60">Colombo 10 • 2018 – 2020</p>
           </div>
 
           <div className="relative">
-            <div className="absolute -left-[13px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
+            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
             <h4 className="text-lg font-semibold text-white">Mahanama College</h4>
             <p className="text-sm text-white/60">Colombo 03 • 2007 – 2018</p>
           </div>
         </div>
       ),
     },
-    {
-      title: "certification",
-      id: "certification",
-      content: (
-        <div className="grid gap-4">
-          {[
-            { name: "Postman API Fundamentals Student Expert", org: "Postman", year: "2024" },
-            { name: "Java Object-Oriented Programming", org: "LinkedIn Learning", year: "2024" },
-            { name: "OOPs in Java", org: "Great Learning Academy", year: "2024" },
-          ].map((c) => (
-            <div
-              key={c.name}
-              className="group rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/10 hover:border-white/20"
-            >
-              <h4 className="font-semibold text-white">{c.name}</h4>
-              <p className="text-sm text-purple-300">
-                {c.org} • {c.year}
-              </p>
-              <div className="mt-3 h-px w-full bg-gradient-to-r from-purple-500/40 via-white/5 to-transparent opacity-0 transition group-hover:opacity-100" />
-            </div>
-          ))}
-        </div>
-      ),
-    },
+//     {
+//   title: "certification",
+//   id: "certification",
+//   content: (
+//     <div className="grid gap-3 sm:gap-4">
+//       {[
+//         { name: "Postman API Fundamentals Student Expert", org: "Postman", year: "2024" },
+//         { name: "Java Object-Oriented Programming", org: "LinkedIn Learning", year: "2024" },
+//         { name: "OOPs in Java", org: "Great Learning Academy", year: "2024" },
+//       ].map((c) => (
+//         <div
+//           key={c.name}
+//           className="group relative overflow-hidden rounded-xl border border-white/10
+//                      bg-white/5 px-4 py-3 sm:px-5 sm:py-4
+//                      transition-all duration-300
+//                      hover:border-purple-400/30 hover:bg-white/10"
+//         >
+//           {/* tiny glow (subtle) */}
+//           <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-purple-500/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
+
+//           <div className="relative">
+//             <h4 className="text-sm sm:text-base font-semibold text-white leading-snug">
+//               {c.name}
+//             </h4>
+
+//             <div className="mt-1 flex items-center justify-between gap-3">
+//               <p className="text-xs sm:text-sm text-purple-300 truncate">
+//                 {c.org}
+//               </p>
+//               <span className="shrink-0 text-[11px] sm:text-xs text-white/50">
+//                 {c.year}
+//               </span>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   ),
+// }
+,
   ];
 
   const TECH = [
@@ -85,17 +114,26 @@ const AboutSection = () => {
     { Icon: SiMongodb, label: "MongoDB", color: "text-green-400" },
     { Icon: FaDocker, label: "Docker", color: "text-sky-300" },
     { Icon: FaGitAlt, label: "Git", color: "text-orange-400" },
+    { Icon: SiExpress, label: "Express.js", color: "text-gray-300" },
+    { Icon: SiMysql, label: "MySQL", color: "text-blue-400" },
+    { Icon: FaMobileAlt, label: "React Native", color: "text-cyan-400" },
+    { Icon: SiPhp, label: "PHP", color: "text-indigo-400" },
+    { Icon: SiLaravel, label: "Laravel", color: "text-red-500" },
+    { Icon: TbApi, label: "REST APIs", color: "text-purple-400" },
+    { Icon: SiOpencv, label: "OpenCV", color: "text-green-400" },
+
   ];
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative text-white mt-2"
-      id="about"
-    >
+  initial={!isMobile ? { opacity: 0, y: 50 } : false}
+  whileInView={!isMobile ? { opacity: 1, y: 0 } : undefined}
+  animate={isMobile ? { opacity: 1, y: 0 } : undefined}
+  viewport={!isMobile ? { once: true, amount: 0.2 } : undefined}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+>
+
+
       {/* ✅ Background glow + subtle grid */}
       <div className="pointer-events-none absolute inset-0 py-11">
         <div className="absolute left-1/2 top-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl" />
@@ -134,30 +172,28 @@ const AboutSection = () => {
             About
           </p>
 
-          <h2 className="text-4xl font-bold text-white mb-4 mt-6 tracking-tight sm:text-5xl">
+          <h2 className="text-4xl font-bold text-white mb-4 mt-6 tracking-tight sm:text-5xl text-center md:text-left">
             About Me
           </h2>
 
-          <p className="text-base md:text-md text-white/85 leading-relaxed">
+          <p className="text-base md:text-md text-white/85 leading-relaxed text-center md:text-left">
             Nipul Yansith is a fourth-year Information Systems (Hons) undergraduate at the University of Colombo School
             of Computing. He builds clean, reliable full-stack applications using React, Next.js, Angular, and Node.js,
             with experience across academic and real-world projects such as ParkEase and GoviSaviya.
           </p>
 
-          <p className="text-base md:text-md text-white/75 leading-relaxed mt-4">
+          <p className="text-base md:text-md text-white/75 leading-relaxed mt-4 text-center md:text-left">
             He enjoys solving practical problems through software and approaches development with a strong focus on
             clarity, collaboration, and maintainable solutions.
           </p>
 
           {/* Tabs */}
-          <div className="flex flex-row flex-wrap justify-start mt-8 gap-2">
-            <TabButton selectTab={() => handleTabChange("education")} active={tab === "education"}>
+          {/* <div className="flex flex-row flex-wrap justify-start mt-8 gap-2">
+            
               Education
-            </TabButton>
-            <TabButton selectTab={() => handleTabChange("certification")} active={tab === "certification"}>
-              Certifications
-            </TabButton>
-          </div>
+            
+           
+          </div> */}
 
           {/* Content */}
           <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
@@ -174,12 +210,17 @@ const AboutSection = () => {
             Tools and frameworks I use to build scalable, maintainable products.
           </p>
 
-          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-6">
+          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-4 sm:gap-5 md:gap-6">
+
             {TECH.map(({ Icon, label, color }) => (
               <div
                 key={label}
                 title={label}
-                className="group flex w-[120px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+                className="group flex shrink-0 flex-col items-center justify-center
+           w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.7rem)] md:w-[120px]
+           rounded-2xl border border-white/10 bg-white/5 p-5
+           transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+
               >
                 <Icon className={`text-4xl ${color} transition group-hover:scale-110`} />
                 <span className="mt-2 text-sm text-white/70 text-center">{label}</span>
