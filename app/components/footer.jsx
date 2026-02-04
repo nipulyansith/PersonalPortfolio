@@ -9,13 +9,20 @@ const Footer = () => {
         
         {/* Logo Section */}
         <div className='flex items-center mb-4 md:mb-0'>
-          <Image 
-            src="/images/nipullogo.png" 
-            alt="Nipul Yansith Logo" 
-            width={80} // Provide explicit width
-            height={80} // Provide explicit height
-            className='w-20' // You can adjust or remove this class
-          />
+         
+  
+  {/* Signature Mark */}
+  <div className="relative flex items-center justify-center h-9 w-9">
+    <span className="absolute text-3xl font-extrabold text-purple-500 leading-none -translate-y-[2px]">
+      N
+    </span>
+    <span className="absolute text-3xl font-extrabold text-fuchsia-500 leading-none translate-x-[6px] translate-y-[6px] opacity-70">
+      Y
+    </span>
+  </div>
+
+
+
         </div>
 
         {/* Navigation Links */}

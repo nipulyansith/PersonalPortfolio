@@ -12,18 +12,13 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
         {/* Icon is hidden by default, shows on hover */}
         <div className="absolute inset-0 w-full h-full flex justify-center items-center bg-[#181818] bg-opacity-0 group-hover:bg-opacity-80 transition-all duration-500 gap-6">
           <Link
-            href="/"
+            href={gitUrl}
             className="h-14 w-14 border-2 rounded-full border-[#ADB7BE] hover:border-purple-500 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
           >
             <CodeBracketIcon className="h-10 w-10 text-[#ADB7BE] group-hover:text-white transition-all duration-300" />
           </Link>
 
-          <Link
-            href="/"
-            className="h-14 w-14 border-2 rounded-full border-[#ADB7BE] hover:border-purple-500 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
-          >
-            <EyeIcon className="h-10 w-10 text-[#ADB7BE] group-hover:text-white transition-all duration-300" />
-          </Link>
+        
         </div>
       </div>
       <div className="text-white rounded-b-xl bg-[#181818] py-6 px-4 mt-1">
