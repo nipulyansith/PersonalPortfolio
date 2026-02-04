@@ -177,15 +177,16 @@ const AboutSection = () => {
           </h2>
 
           <p className="text-base md:text-md text-white/85 leading-relaxed text-center md:text-left">
-            Nipul Yansith is a fourth-year Information Systems (Hons) undergraduate at the University of Colombo School
-            of Computing. He builds clean, reliable full-stack applications using React, Next.js, Angular, and Node.js,
-            with experience across academic and real-world projects such as ParkEase and GoviSaviya.
-          </p>
+  Nipul Yansith is a fourth-year Information Systems (Hons) undergraduate at the University of Colombo School
+  of Computing. He develops scalable full-stack applications using React, Next.js, Angular, and Node.js, with
+  hands-on industry experience and active research in intelligent systems.
+</p>
 
-          <p className="text-base md:text-md text-white/75 leading-relaxed mt-4 text-center md:text-left">
-            He enjoys solving practical problems through software and approaches development with a strong focus on
-            clarity, collaboration, and maintainable solutions.
-          </p>
+<p className="text-base md:text-md text-white/75 leading-relaxed mt-4 text-center md:text-left">
+  He focuses on building practical, maintainable solutions while exploring machine learning and computer vision
+  to solve real-world problems through thoughtful system design.
+</p>
+
 
           {/* Tabs */}
           {/* <div className="flex flex-row flex-wrap justify-start mt-8 gap-2">
