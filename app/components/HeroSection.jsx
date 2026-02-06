@@ -52,7 +52,7 @@ const HeroSection = () => {
               Software Engineer
             </p>
 
-            <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-white mb-4 text-xl sm:text-4xl lg:text-5xl font-bold leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 Hello, I’m{" "}
               </span>
@@ -62,8 +62,6 @@ const HeroSection = () => {
                     "Nipul Yansith",
                     1200,
                     "A Full Stack Developer",
-                    1200,
-                    "A Mobile Developer",
                     1200,
                     "A Software Engineer",
                     1200,

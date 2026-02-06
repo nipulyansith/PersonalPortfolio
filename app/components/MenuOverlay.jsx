@@ -7,7 +7,7 @@ const MenuOverlay = ({ links, setNavbarOpen }) => {
         {links.map((link) => (
           <li key={link.href}>
             <Link
-              href={`#${link.href}`}
+              href={link.href}
               onClick={() => setNavbarOpen(false)}
               className="text-white text-lg font-medium hover:text-purple-400 transition"
             >

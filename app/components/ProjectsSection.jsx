@@ -144,7 +144,7 @@ const ProjectsSection = () => {
 
         {/* Optional footer hint */}
         <div className="mt-10 text-center text-sm text-white/50">
-          Want to see more? Check my GitHub for additional repositories and experiments.
+          Want to see more? Check my <a href="https://github.com/nipulyansith" className="text-purple-400 hover:underline">GitHub</a> for additional repositories and experiments.
         </div>
       </div>
     </section>

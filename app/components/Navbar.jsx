@@ -8,10 +8,13 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import MenuOverlay from "./MenuOverlay";
 
 const navlinks = [
-  { title: "About", href: "about" },
-  { title: "Projects", href: "projects" },
-  { title: "Contact", href: "contact" },
+  { title: "About", href: "/#about" },
+  { title: "Projects", href: "/#projects" },
+  { title: "Experience", href: "/#experience" },
+  { title: "Contact", href: "/#contact" },
+  { title: "Beyond Code", href: "/fun" },
 ];
+
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -84,12 +87,15 @@ const Navbar = () => {
         <div className="max-md:hidden md:block">
           <ul className="flex items-center gap-2">
             {navlinks.map((link, index) => (
-              <NavLink key={index} href={`#${link.href}`} title={link.title} />
-            ))}
+  <NavLink key={index} href={link.href} title={link.title} />
+))}
+
+
 
             {/* CTA button */}
             
           </ul>
+          
         </div>
       </div>
 

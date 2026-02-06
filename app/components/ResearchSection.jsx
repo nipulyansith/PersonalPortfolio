@@ -69,7 +69,7 @@ const ResearchSection = () => {
           </p>
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-6">
-            Biomechanical Evaluation for Cricket Fast Bowling
+            Biomechanical Evaluation for Cricket Fast Bowling (Ongoing)
           </h2>
 
           <p className="mt-4 text-white/75 leading-relaxed text-center md:text-left max-w-3xl">
