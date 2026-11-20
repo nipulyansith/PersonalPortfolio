@@ -33,6 +33,12 @@ function ArticleBlocks({ blocks }) {
     if (block.type === "quote") return <blockquote key={index}><p>{block.text}</p></blockquote>;
     if (block.type === "subheading") return <h3 key={index}>{block.text}</h3>;
     if (block.type === "note") return <p key={index} className="blog-editor-note">{block.text}</p>;
+    if (block.type === "image") return (
+      <figure key={index} className="blog-photo">
+        <Image src={block.src} alt={block.alt} width={block.width} height={block.height} sizes="(min-width: 768px) 672px, 100vw" className="h-auto w-full rounded-sm" />
+        {block.caption && <figcaption>{block.caption}</figcaption>}
+      </figure>
+    );
     return <p key={index}>{block.text}</p>;
   });
 }

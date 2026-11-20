@@ -506,6 +506,14 @@ export const posts = [
           {
             "type": "paragraph",
             "text": "I'm grateful for the people I've had the opportunity to learn and work with along the way."
+          },
+          {
+            "type": "image",
+            "src": "/images/team.jpg",
+            "alt": "Teammates together during a casual beach outing",
+            "width": 3072,
+            "height": 2403,
+            "caption": "Some of the people who made this journey more enjoyable."
           }
         ]
       },

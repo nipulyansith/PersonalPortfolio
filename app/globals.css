@@ -147,6 +147,14 @@ img { max-width: 100%; }
 
 .blog-prose p { margin: 1.2rem 0; }
 
+.blog-photo { margin: 2rem 0; }
+.blog-photo figcaption {
+  margin-top: 0.85rem;
+  color: rgb(255 255 255 / 0.5);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
 .blog-prose h2 {
   margin: 0 0 1.5rem;
   color: #eeeae5;

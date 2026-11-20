@@ -3,6 +3,7 @@
 import React from "react";
 import { FaCertificate, FaGraduationCap, FaUsers } from "react-icons/fa";
 import { HiCheckCircle } from "react-icons/hi2";
+import NBQSAAward from "./NBQSAAward";
 
 const AchievementsSection = () => {
   const items = [
@@ -25,7 +26,6 @@ const AchievementsSection = () => {
       list: [
         "First Class Honours — B.Sc. (Hons) in Information Systems, GPA 3.70/4.00 (2026)",
         "Director’s List — Four semesters, UCSC",
-        "Merit Award — National ICT Awards NBQSA, PitchIQ (2026)",
         "Finalist — National ICT Awards NBQSA, GoviSaviya (2024)",
         "Top 100 in Sri Lanka — IEEE Xtreme 18.0 (2024)",
       ],
@@ -75,6 +75,8 @@ const AchievementsSection = () => {
             Certifications, academic achievements, and extra-curricular accomplishments that reflect my growth and leadership.
           </p>
         </div>
+
+        <NBQSAAward />
 
         {/* Cards */}
         <div className="mt-8 grid gap-5 sm:mt-12 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
