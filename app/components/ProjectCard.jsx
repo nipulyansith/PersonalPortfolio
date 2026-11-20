@@ -1,32 +1,22 @@
-import React from 'react'
-import { CodeBracketIcon, EyeIcon } from '@heroicons/react/20/solid'
-import Link from 'next/link'
+import Image from "next/image";
+import { TechnologyBadges } from "./TechnologyBadge";
 
-const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
-  return (
-    <div className="group relative rounded-xl overflow-hidden">
-      <div
-        className="h-52 md:h-72 rounded-t-xl bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-        style={{ backgroundImage: `url(${imgUrl})` }}
-      >
-        {/* Icon is hidden by default, shows on hover */}
-        <div className="absolute inset-0 w-full h-full flex justify-center items-center bg-[#181818] bg-opacity-0 group-hover:bg-opacity-80 transition-all duration-500 gap-6">
-          <Link
-            href={gitUrl}
-            className="h-14 w-14 border-2 rounded-full border-[#ADB7BE] hover:border-purple-500 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
-          >
-            <CodeBracketIcon className="h-10 w-10 text-[#ADB7BE] group-hover:text-white transition-all duration-300" />
-          </Link>
-
-        
-        </div>
-      </div>
-      <div className="text-white rounded-b-xl bg-[#181818] py-6 px-4 mt-1">
-        <h5 className="text-xl font-semibold mb-2">{title}</h5>
-        <p className="text-[#ADB7BE]">{description}</p>
+const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl, technologies = [], dates }) => (
+  <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#181818] text-white">
+    <div className="relative aspect-[16/10] overflow-hidden">
+      <Image src={imgUrl} alt={`${title} project`} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition duration-300 hover:scale-105" />
+    </div>
+    <div className="flex flex-1 flex-col p-5">
+      <h3 className="text-xl font-semibold">{title}</h3>
+      {dates && <p className="mt-2 text-sm text-purple-300">{dates}</p>}
+      <p className="mt-4 leading-relaxed text-[#ADB7BE]">{description}</p>
+      <TechnologyBadges items={technologies} label="Project technologies" className="mt-5" />
+      <div className="mt-auto flex flex-wrap gap-4 pt-6">
+        {gitUrl && <a href={gitUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-medium text-purple-300 underline-offset-4 hover:underline">View code<span className="sr-only"> for {title}</span></a>}
+        {previewUrl && <a href={previewUrl} className="inline-flex min-h-11 items-center font-medium text-purple-300 underline-offset-4 hover:underline">Explore PitchIQ</a>}
       </div>
     </div>
-  )
-}
+  </article>
+);
 
-export default ProjectCard
+export default ProjectCard;

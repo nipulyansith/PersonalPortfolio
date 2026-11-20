@@ -6,6 +6,7 @@ const ProjectTag = ({ name, onClick, isSelected }) => {
   return (
     <button
       onClick={() => onClick(name)}
+      aria-pressed={isSelected}
       className={`relative px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300
         ${
           isSelected

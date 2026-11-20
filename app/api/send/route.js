@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req) {
   try {
     // Parse the request body
@@ -14,6 +12,15 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
+    if (!process.env.RESEND_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: 'The contact form is temporarily unavailable. Please email nipulyansith26@gmail.com directly.' }),
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send email using Resend API
     const { data, error } = await resend.emails.send({

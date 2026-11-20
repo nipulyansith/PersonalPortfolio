@@ -1,239 +1,51 @@
 "use client";
 
-import React, { useTransition, useState, useEffect } from "react";
-
 import Image from "next/image";
-import TabButton from "./TabButton";
 import { motion } from "framer-motion";
+import TechnicalSkills from "./TechnicalSkills";
 
-// ✅ Icons (react-icons)
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaMobileAlt  } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiNextdotjs, SiAngular, SiPostgresql, SiMongodb,  SiMysql, SiExpress, SiPhp, SiLaravel, SiOpencv } from "react-icons/si"
-import { TbApi } from "react-icons/tb";
-
-const AboutSection = () => {
-  const [tab, setTab] = useState("education");
-  const [, startTransition] = useTransition();
-
-  const handleTabChange = (id) => {
-    startTransition(() => setTab(id));
-  };
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-  const mq = window.matchMedia("(max-width: 768px)"); // md breakpoint
-  const update = () => setIsMobile(mq.matches);
-  update();
-  mq.addEventListener("change", update);
-  return () => mq.removeEventListener("change", update);
-}, []);
-
-  const TAB_DATA = [
-    {
-      title: "education",
-      id: "education",
-      content: (
-        <div className="space-y-6 border-l border-purple-500/40 pl-6">
-          <div className="relative">
-            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
-            
-            <h4 className="text-lg font-semibold text-white">
-               University of Colombo School of Computing
-            </h4>
-            <p className="text-sm text-purple-300">BSc (Hons) Information Systems</p>
-            <p className="text-sm text-white/60">2022 – Present</p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
-            <h4 className="text-lg font-semibold text-white">Ananda College</h4>
-            <p className="text-sm text-white/60">Colombo 10 • 2018 – 2020</p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -left-[17px] top-2 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_18px_rgba(168,85,247,0.6)]" />
-            <h4 className="text-lg font-semibold text-white">Mahanama College</h4>
-            <p className="text-sm text-white/60">Colombo 03 • 2007 – 2018</p>
-          </div>
-        </div>
-      ),
-    },
-//     {
-//   title: "certification",
-//   id: "certification",
-//   content: (
-//     <div className="grid gap-3 sm:gap-4">
-//       {[
-//         { name: "Postman API Fundamentals Student Expert", org: "Postman", year: "2024" },
-//         { name: "Java Object-Oriented Programming", org: "LinkedIn Learning", year: "2024" },
-//         { name: "OOPs in Java", org: "Great Learning Academy", year: "2024" },
-//       ].map((c) => (
-//         <div
-//           key={c.name}
-//           className="group relative overflow-hidden rounded-xl border border-white/10
-//                      bg-white/5 px-4 py-3 sm:px-5 sm:py-4
-//                      transition-all duration-300
-//                      hover:border-purple-400/30 hover:bg-white/10"
-//         >
-//           {/* tiny glow (subtle) */}
-//           <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-purple-500/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
-
-//           <div className="relative">
-//             <h4 className="text-sm sm:text-base font-semibold text-white leading-snug">
-//               {c.name}
-//             </h4>
-
-//             <div className="mt-1 flex items-center justify-between gap-3">
-//               <p className="text-xs sm:text-sm text-purple-300 truncate">
-//                 {c.org}
-//               </p>
-//               <span className="shrink-0 text-[11px] sm:text-xs text-white/50">
-//                 {c.year}
-//               </span>
-//             </div>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   ),
-// }
-,
-  ];
-
-  const TECH = [
-    { Icon: FaHtml5, label: "HTML5", color: "text-orange-500" },
-    { Icon: FaCss3Alt, label: "CSS3", color: "text-blue-500" },
-    { Icon: SiJavascript, label: "JavaScript", color: "text-yellow-400" },
-    { Icon: SiTypescript, label: "TypeScript", color: "text-sky-400" },
-    { Icon: FaReact, label: "React", color: "text-cyan-400" },
-    { Icon: SiNextdotjs, label: "Next.js", color: "text-white" },
-    { Icon: SiAngular, label: "Angular", color: "text-red-500" },
-    { Icon: FaNodeJs, label: "Node.js", color: "text-green-500" },
-    { Icon: SiPostgresql, label: "PostgreSQL", color: "text-blue-300" },
-    { Icon: SiMongodb, label: "MongoDB", color: "text-green-400" },
-    { Icon: FaDocker, label: "Docker", color: "text-sky-300" },
-    { Icon: FaGitAlt, label: "Git", color: "text-orange-400" },
-    { Icon: SiExpress, label: "Express.js", color: "text-gray-300" },
-    { Icon: SiMysql, label: "MySQL", color: "text-blue-400" },
-    { Icon: FaMobileAlt, label: "React Native", color: "text-cyan-400" },
-    { Icon: SiPhp, label: "PHP", color: "text-indigo-400" },
-    { Icon: SiLaravel, label: "Laravel", color: "text-red-500" },
-    { Icon: TbApi, label: "REST APIs", color: "text-purple-400" },
-    { Icon: SiOpencv, label: "OpenCV", color: "text-green-400" },
-
-  ];
-
-  return (
-    <motion.section
-  initial={!isMobile ? { opacity: 0, y: 50 } : false}
-  whileInView={!isMobile ? { opacity: 1, y: 0 } : undefined}
-  animate={isMobile ? { opacity: 1, y: 0 } : undefined}
-  viewport={!isMobile ? { once: true, amount: 0.2 } : undefined}
-  transition={{ duration: 0.6, ease: "easeOut" }}
->
-
-
-      {/* ✅ Background glow + subtle grid */}
-      <div className="pointer-events-none absolute inset-0 py-11">
-        <div className="absolute left-1/2 top-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl" />
-        <div className="absolute right-10 top-40 h-72 w-72 rounded-full bg-fuchsia-600/10 blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
-
-      {/* 🔹 Top Grid */}
-      <div className="relative z-10 md:grid md:grid-cols-2 gap-10 items-center py-10 px-4 xl:gap-24 sm:py-16 xl:px-16">
-        {/* Image card */}
-        <div className="relative">
-          <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-purple-500/25 via-fuchsia-500/10 to-transparent blur-xl" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <Image
-              src="/images/nipulai3.jpg"
-              alt="about"
-              width={700}
-              height={600}
-              className="h-auto w-full object-cover transition duration-500 hover:scale-[1.02]"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Text */}
-        <div className="mt-6 md:mt-0 text-left flex flex-col">
-          <p className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-            <span className="h-2 w-2 rounded-full bg-purple-400" />
-            About
+const AboutSection = () => (
+  <section id="about" className="relative text-white py-12 px-4 sm:py-20 xl:px-16">
+    <div className="pointer-events-none absolute inset-0">
+      <div className="absolute left-1/2 top-10 h-80 w-80 -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl" />
+    </div>
+    <div className="relative z-10 mx-auto max-w-6xl">
+      <div className="grid items-center gap-10 md:grid-cols-2 xl:gap-20">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <Image src="/images/nipulai3.jpg" alt="Nipul Yansith" width={700} height={600} className="h-auto w-full object-cover" />
+        </motion.div>
+        <div>
+          <p className="text-sm uppercase tracking-[0.2em] text-purple-300">About</p>
+          <h2 className="mb-5 mt-4 text-3xl font-bold sm:text-5xl">About Me</h2>
+          <p className="text-base leading-relaxed text-white/85">
+            I’m a Software Engineer at Emojot, building enterprise workflow, analytics, and AI-powered products used by multiple client companies. My core stack is Angular, TypeScript, Node.js, and AWS.
           </p>
-
-          <h2 className="text-4xl font-bold text-white mb-4 mt-6 tracking-tight sm:text-5xl text-center md:text-left">
-            About Me
-          </h2>
-
-          <p className="text-base md:text-md text-white/85 leading-relaxed text-center md:text-left">
-  Nipul Yansith is a fourth-year Information Systems (Hons) undergraduate at the University of Colombo School
-  of Computing. He develops scalable full-stack applications using React, Next.js, Angular, and Node.js, with
-  hands-on industry experience and active research in intelligent systems.
-</p>
-
-<p className="text-base md:text-md text-white/75 leading-relaxed mt-4 text-center md:text-left">
-  He focuses on building practical, maintainable solutions while exploring machine learning and computer vision
-  to solve real-world problems through thoughtful system design.
-</p>
-
-
-          {/* Tabs */}
-          {/* <div className="flex flex-row flex-wrap justify-start mt-8 gap-2">
-            
-              Education
-            
-           
-          </div> */}
-
-          {/* Content */}
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-            {TAB_DATA.find((t) => t.id === tab)?.content}
-          </div>
-        </div>
-      </div>
-
-      {/* 🔹 Technologies */}
-      <div className="relative z-10 px-4 xl:px-16 pb-16">
-        <div className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-          <h3 className="text-2xl font-semibold text-center mb-2">Technologies I’ve Worked With</h3>
-          <p className="text-center text-white/60 mb-8">
-            Tools and frameworks I use to build scalable, maintainable products.
+          <p className="mt-4 text-base leading-relaxed text-white/75">
+            I deliver features end to end, from configurable workflow modules and self-service reporting to AI-driven review processing. I work in agile teams with CI/CD pipelines and collaborate closely with client-facing teams.
           </p>
-
-          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-4 sm:gap-5 md:gap-6">
-
-            {TECH.map(({ Icon, label, color }) => (
-              <div
-                key={label}
-                title={label}
-                className="group flex shrink-0 flex-col items-center justify-center
-           w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.7rem)] md:w-[120px]
-           rounded-2xl border border-white/10 bg-white/5 p-5
-           transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
-
-              >
-                <Icon className={`text-4xl ${color} transition group-hover:scale-110`} />
-                <span className="mt-2 text-sm text-white/70 text-center">{label}</span>
-                <div className="mt-3 h-px w-full bg-gradient-to-r from-purple-500/40 via-white/5 to-transparent opacity-0 transition group-hover:opacity-100" />
-              </div>
-            ))}
+          <p className="mt-4 text-base leading-relaxed text-white/75">
+            I’m also the developer behind PitchIQ, an NBQSA Merit Award-winning cricket biomechanics platform, and a First Class Honours graduate from the University of Colombo School of Computing.
+          </p>
+          <div className="mt-8 space-y-6 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
+            <h3 className="text-xl font-semibold">Education</h3>
+            <div className="border-l-2 border-purple-500/50 pl-4">
+              <h4 className="font-semibold">University of Colombo School of Computing</h4>
+              <p className="mt-1 text-purple-300">B.Sc. (Hons) in Information Systems</p>
+              <p className="mt-1 text-sm text-white/60">May 2022 – 2026</p>
+              <p className="mt-3 text-white/85">First Class Honours · GPA: 3.70/4.00</p>
+              <p className="mt-1 text-sm text-white/70">Director’s List: Four semesters</p>
+            </div>
+            <div className="border-l-2 border-purple-500/50 pl-4">
+              <h4 className="font-semibold">Ananda College, Colombo</h4>
+              <p className="mt-1 text-sm text-white/60">2018 – 2020</p>
+              <p className="mt-2 text-white/75">G.C.E. Advanced Level (2020) · Z-score: 1.41</p>
+            </div>
           </div>
         </div>
       </div>
-    </motion.section>
-  );
-};
+      <TechnicalSkills />
+    </div>
+  </section>
+);
 
 export default AboutSection;
-``

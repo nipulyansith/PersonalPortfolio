@@ -9,10 +9,12 @@ import Image from "next/image";
 const EmailSection = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEmailSent(false);
+    setErrorMessage("");
 
     const data = {
       email: e.target.email.value,
@@ -32,17 +34,17 @@ const EmailSection = () => {
         setEmailSent(true);
         e.target.reset();
       } else {
-        throw new Error("Failed to send message");
+        throw new Error("The contact form is temporarily unavailable. Please email nipulyansith26@gmail.com directly.");
       }
     } catch (error) {
-      alert("An error occurred: " + error.message);
+      setErrorMessage(error.message);
     } finally {
       setIsSending(false);
     }
   };
 
   return (
-    <section id="contact" className="relative py-24">
+    <section id="contact" className="relative overflow-hidden py-12 sm:py-20">
       {/* Background glow + subtle pattern */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-16 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl" />
@@ -65,22 +67,25 @@ const EmailSection = () => {
             Contact
           </p>
 
-          <h2 className="mt-5 text-4xl font-bold text-white tracking-tight sm:text-5xl">
+          <h2 className="mt-5 text-3xl font-bold text-white tracking-tight sm:text-5xl">
             Get in Touch
           </h2>
 
-          <p className="mt-4 text-[#ADB7BE] text-lg leading-relaxed">
-            I&apos;m currently looking for new opportunities. My inbox is always
-            open — whether you have a question or just want to say hi, I&apos;ll
-            try my best to get back to you!
+          <p className="mt-4 text-[#ADB7BE] text-base sm:text-lg leading-relaxed">
+            Have a project in mind, a question about my work, or an interest in
+            collaborating on PitchIQ? I’d love to hear from you.
           </p>
+
+          <p className="mt-4 text-white/70">Mulleriyawa, Sri Lanka</p>
+          <a href="mailto:nipulyansith26@gmail.com" className="mt-3 inline-block break-all text-purple-300 underline-offset-4 hover:underline">nipulyansith26@gmail.com</a>
 
           {/* Socials */}
           <div className="mt-6 flex items-center justify-center gap-4">
             <Link
               href="https://github.com/nipulyansith"
               target="_blank"
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
             >
               <Image src={GithubIcon} alt="Github Icon" className="h-6 w-6" />
               <span className="text-sm font-medium">GitHub</span>
@@ -89,7 +94,8 @@ const EmailSection = () => {
             <Link
               href="https://www.linkedin.com/in/nipul-yansith-183b8a156/"
               target="_blank"
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
             >
               <Image src={LinkedInIcon} alt="LinkedIn Icon" className="h-6 w-6" />
               <span className="text-sm font-medium">LinkedIn</span>
@@ -99,7 +105,7 @@ const EmailSection = () => {
 
         {/* Form (single centered card — not the same grid look as About) */}
         <div className="mx-auto mt-12 max-w-2xl">
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-md sm:p-8">
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-8 shadow-xl backdrop-blur-md">
             {/* top accent */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/60 to-transparent" />
 
@@ -111,10 +117,11 @@ const EmailSection = () => {
                 <input
                   type="email"
                   id="email"
+                  autoComplete="email"
                   name="email"
                   required
                   placeholder="jacob@gmail.com"
-                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-sm text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
+                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
                 />
               </div>
 
@@ -128,7 +135,7 @@ const EmailSection = () => {
                   name="subject"
                   required
                   placeholder="Just saying Hi :)"
-                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-sm text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
+                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
                 />
               </div>
 
@@ -142,7 +149,7 @@ const EmailSection = () => {
                   rows={7}
                   required
                   placeholder="Hey Nipul, I have a question about your work..."
-                  className="w-full resize-none rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-sm text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
+                  className="w-full resize-none rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
                 />
               </div>
 
@@ -154,6 +161,10 @@ const EmailSection = () => {
                 {isSending ? "Sending..." : "Send Message"}
                 <span className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100 shadow-[0_0_25px_rgba(168,85,247,0.35)]" />
               </button>
+
+              {errorMessage && (
+                <p role="alert" className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">{errorMessage}</p>
+              )}
 
               {emailSent && (
                 <div className="mt-2 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-300">

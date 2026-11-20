@@ -23,8 +23,11 @@ const AchievementsSection = () => {
       accent: "from-indigo-500/20 to-purple-500/10",
       bulletColor: "text-indigo-300",
       list: [
-        "Dean's List — BSc. (Hons) in Information Systems (2024)",
-        "National ICT Awards NBQSA — Finalists (2024)",
+        "First Class Honours — B.Sc. (Hons) in Information Systems, GPA 3.70/4.00 (2026)",
+        "Director’s List — Four semesters, UCSC",
+        "Merit Award — National ICT Awards NBQSA, PitchIQ (2026)",
+        "Finalist — National ICT Awards NBQSA, GoviSaviya (2024)",
+        "Top 100 in Sri Lanka — IEEE Xtreme 18.0 (2024)",
       ],
     },
     {
@@ -33,15 +36,15 @@ const AchievementsSection = () => {
       accent: "from-fuchsia-500/20 to-purple-500/10",
       bulletColor: "text-fuchsia-300",
       list: [
-        "Secretary, Rekha — Music Circle UCSC (2024 – Present)",
+        "Secretary, Junior Treasurer, Guitarist & Singer — Rekha Music Circle, UCSC (2023 – 2025)",
         "Junior Treasurer, Students' Union UCSC (2023 – 2024)",
-        "Incoming Global Volunteer Team Leader, AIESEC in Colombo Central (2022)",
+        "OCVP — Gramfest; Team Leader — iGV, AIESEC in Colombo Central (2022)",
       ],
     },
   ];
 
   return (
-    <section className="relative py-24">
+    <section id="achievements" className="relative overflow-hidden py-12 text-white sm:py-20">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-14 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/20 blur-3xl" />
@@ -64,21 +67,21 @@ const AchievementsSection = () => {
             Highlights & Milestones
           </p>
 
-          <h2 className="mt-5 text-4xl font-bold text-white tracking-tight sm:text-5xl">
+          <h2 className="mt-5 text-3xl font-bold text-white tracking-tight sm:text-5xl">
             Achievements
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[#ADB7BE] text-lg leading-relaxed">
+          <p className="mx-auto mt-4 max-w-2xl text-[#ADB7BE] text-base sm:text-lg leading-relaxed">
             Certifications, academic achievements, and extra-curricular accomplishments that reflect my growth and leadership.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:mt-12 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {items.map(({ title, icon: Icon, accent, bulletColor, list }) => (
             <div
               key={title}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:border-white/20"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:border-white/20"
             >
               {/* Gradient overlay */}
               <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent} opacity-0 transition group-hover:opacity-100`} />
@@ -88,7 +91,7 @@ const AchievementsSection = () => {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                     <Icon className="text-purple-300" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">{title}</h3>
@@ -99,7 +102,7 @@ const AchievementsSection = () => {
                 <ul className="mt-6 space-y-4">
                   {list.map((text) => (
                     <li key={text} className="flex items-start gap-3 text-[#E1E8F0]">
-                      <HiCheckCircle className={`mt-0.5 text-xl ${bulletColor}`} />
+                      <HiCheckCircle className={`mt-0.5 shrink-0 text-xl ${bulletColor}`} />
                       <span className="leading-relaxed">{text}</span>
                     </li>
                   ))}

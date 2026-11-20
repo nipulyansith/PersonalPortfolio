@@ -1,57 +1,21 @@
-import React from 'react';
-import Image from 'next/image'; // Import the Image component
+import Link from "next/link";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className='footer text-gray-300 py-8 border-t-2 border-t-gray-700'>
-
-      <div className='container mx-auto px-4 flex flex-col md:flex-row justify-between items-center'>
-        
-        {/* Logo Section */}
-        <div className='flex items-center mb-4 md:mb-0'>
-         
-  
-  {/* Signature Mark */}
-  <div className="relative flex items-center justify-center h-9 w-9">
-    <span className="absolute text-3xl font-extrabold text-purple-500 leading-none -translate-y-[2px]">
-      N
-    </span>
-    <span className="absolute text-3xl font-extrabold text-fuchsia-500 leading-none translate-x-[6px] translate-y-[6px] opacity-70">
-      Y
-    </span>
-  </div>
-
-
-
-        </div>
-
-        {/* Navigation Links */}
-        <div className='flex space-x-6 mb-4 md:mb-0'>
-          <a href='#about' className='hover:text-white transition duration-300'>About</a>
-          <a href='#projects' className='hover:text-white transition duration-300'>Projects</a>
-          <a href='#contact' className='hover:text-white transition duration-300'>Contact</a>
-        </div>
-
-        {/* Social Media Links */}
-        <div className='flex space-x-4'>
-          <a href='https://www.linkedin.com/in/nipul' target='_blank' rel='noopener noreferrer' className='hover:text-white transition duration-300'>
-            <i className='fab fa-linkedin fa-lg'></i> {/* Font Awesome icon */}
-          </a>
-          <a href='https://github.com/nipul' target='_blank' rel='noopener noreferrer' className='hover:text-white transition duration-300'>
-            <i className='fab fa-github fa-lg'></i> {/* Font Awesome icon */}
-          </a>
-          <a href='https://twitter.com/nipul' target='_blank' rel='noopener noreferrer' className='hover:text-white transition duration-300'>
-            <i className='fab fa-twitter fa-lg'></i> {/* Font Awesome icon */}
-          </a>
+    <footer className="border-t border-white/10 bg-[#121212] px-4 py-8 text-gray-300 sm:px-6">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 lg:flex-row">
+        <Link href="/" className="inline-flex min-h-11 items-center font-semibold text-purple-300">Nipul Yansith</Link>
+        <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm">
+          {[["About", "/#about"], ["Projects", "/#projects"], ["Research", "/#research"], ["Contact", "/#contact"], ["Blog", "/blog"]].map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-11 items-center hover:text-white">{label}</Link>)}
+          <a href="/Nipul_Yansith_CV.pdf" download className="inline-flex min-h-11 items-center hover:text-white">Download CV</a>
+        </nav>
+        <div className="flex gap-5 text-sm">
+          <a href="https://www.linkedin.com/in/nipul-yansith-183b8a156/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 hover:text-white"><SiLinkedin aria-hidden="true" className="h-4 w-4" />LinkedIn</a>
+          <a href="https://github.com/nipulyansith" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 hover:text-white"><SiGithub aria-hidden="true" className="h-4 w-4" />GitHub</a>
         </div>
       </div>
-
-      {/* Footer Bottom Section */}
-      <div className='container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 text-center'>
-        <p className='text-sm text-slate-500'>&copy; {new Date().getFullYear()} Nipul Yansith. All rights reserved.</p>
-      </div>
+      <p className="mt-6 text-center text-sm leading-relaxed text-slate-400">&copy; {new Date().getFullYear()} Nipul Yansith. All rights reserved.</p>
     </footer>
-  )
+  );
 }
-
-export default Footer;

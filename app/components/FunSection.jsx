@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Navbar from "./Navbar";
 
 const FunSection = () => {
   const postmanImages = [
@@ -29,7 +28,7 @@ const FunSection = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative text-white py-16 px-4 xl:px-16 mt-14"
+      className="relative overflow-hidden text-white py-12 px-4 sm:py-20 xl:px-16"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
@@ -45,7 +44,7 @@ const FunSection = () => {
             Beyond Engineering
           </p>
 
-          <h1 className="text-4xl sm:text-5xl font-bold mt-6">
+          <h1 className="text-3xl sm:text-5xl font-bold mt-6">
             Music & Performances
           </h1>
 
@@ -67,17 +66,18 @@ const FunSection = () => {
           </p>
 
           {/* Portrait Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-6">
             {postmanImages.map((img, i) => (
               <div
                 key={i}
                 className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm"
               >
-                <div className="relative w-full h-[320px]">
+                <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-80">
                   <Image
                     src={img}
                     alt={`Postman performance ${i + 1}`}
                     fill
+                    sizes="(min-width: 640px) 25vw, 50vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -100,13 +100,14 @@ const FunSection = () => {
     {galleryImages.map((img, i) => (
       <div
         key={i}
-        className="group mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm"
+        className="group relative mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm"
       >
         <Image
           src={img.src}
           alt={`Gallery ${i + 1}`}
           width={img.w}
           height={img.h}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="h-auto w-full object-cover transition duration-500 group-hover:scale-[1.02]"
         />
 
