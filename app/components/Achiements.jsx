@@ -1,124 +1,230 @@
-"use client";
-
-import React from "react";
-import { FaCertificate, FaGraduationCap, FaUsers } from "react-icons/fa";
-import { HiCheckCircle } from "react-icons/hi2";
+import Link from "next/link";
 import NBQSAAward from "./NBQSAAward";
+import { SiPostman } from "react-icons/si";
+import { FaLinkedinIn } from "react-icons/fa";
+import {
+  TbAward,
+  TbCertificate,
+  TbSchool,
+  TbTrophy,
+  TbUsers,
+  TbMusic,
+  TbHeartHandshake,
+  TbWorld,
+  TbRosetteDiscountCheck,
+} from "react-icons/tb";
 
-const AchievementsSection = () => {
-  const items = [
-    {
-      title: "Certifications",
-      icon: FaCertificate,
-      accent: "from-purple-500/20 to-fuchsia-500/10",
-      bulletColor: "text-purple-400",
-      list: [
-        "Postman API Fundamentals Student Expert, Postman (2024)",
-        "Java Object-Oriented Programming, LinkedIn Learning (2024)",
-        "OOPs in Java, Great Learning Academy (2024)",
-      ],
-    },
-    {
-      title: "Academic Achievements",
-      icon: FaGraduationCap,
-      accent: "from-indigo-500/20 to-purple-500/10",
-      bulletColor: "text-indigo-300",
-      list: [
-        "First Class Honours — B.Sc. (Hons) in Information Systems, GPA 3.70/4.00 (2026)",
-        "Director’s List — Four semesters, UCSC",
-        "Finalist — National ICT Awards NBQSA, GoviSaviya (2024)",
-        "Top 100 in Sri Lanka — IEEE Xtreme 18.0 (2024)",
-      ],
-    },
-    {
-      title: "Extra-Curricular",
-      icon: FaUsers,
-      accent: "from-fuchsia-500/20 to-purple-500/10",
-      bulletColor: "text-fuchsia-300",
-      list: [
-        "Secretary, Junior Treasurer, Guitarist & Singer — Rekha Music Circle, UCSC (2023 – 2025)",
-        "Junior Treasurer, Students' Union UCSC (2023 – 2024)",
-        "OCVP — Gramfest; Team Leader — iGV, AIESEC in Colombo Central (2022)",
-      ],
-    },
-  ];
-
+const certifications = [
+  {
+    title: "API Fundamentals Student Expert",
+    issuer: "Postman",
+    year: "2024",
+    icon: SiPostman,
+    tone: "postman",
+  },
+  {
+    title: "Java Object-Oriented Programming",
+    issuer: "LinkedIn Learning",
+    year: "2024",
+    icon: FaLinkedinIn,
+    tone: "linkedin",
+  },
+  {
+    title: "OOPs in Java",
+    issuer: "Great Learning Academy",
+    year: "2024",
+    icon: TbSchool,
+    tone: "learning",
+  },
+];
+const communities = [
+  {
+    title: "Rekha Music Circle",
+    organization: "UCSC",
+    roles: "Secretary · Junior Treasurer · Guitarist & Singer",
+    year: "2023–2025",
+    icon: TbMusic,
+  },
+  {
+    title: "Students’ Union",
+    organization: "UCSC",
+    roles: "Junior Treasurer",
+    year: "2023–2024",
+    icon: TbHeartHandshake,
+  },
+  {
+    title: "AIESEC",
+    organization: "Colombo Central",
+    roles: "OCVP — Gramfest · Team Leader — iGV",
+    year: "2022",
+    icon: TbWorld,
+  },
+];
+export default function AchievementsSection() {
   return (
-    <section id="achievements" className="relative overflow-hidden py-12 text-white sm:py-20">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-14 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/20 blur-3xl" />
-        <div className="absolute right-10 top-40 h-72 w-72 rounded-full bg-fuchsia-600/10 blur-3xl" />
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 xl:px-16">
-        <div className="text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-            <span className="h-2 w-2 rounded-full bg-purple-400" />
-            Highlights & Milestones
+    <section id="achievements" className="section-block achievements-section">
+      <div className="section-shell">
+        <header className="section-heading">
+          <div>
+            <p className="eyebrow">Recognition & milestones</p>
+            <h2 className="section-title">
+              The moments
+              <br />
+              that mean more.
+            </h2>
+          </div>
+          <p className="section-heading-aside">
+            A few milestones along the way. Each one a reminder to keep
+            learning, keep showing up, and keep building.
           </p>
-
-          <h2 className="mt-5 text-3xl font-bold text-white tracking-tight sm:text-5xl">
-            Achievements
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-[#ADB7BE] text-base sm:text-lg leading-relaxed">
-            Certifications, academic achievements, and extra-curricular accomplishments that reflect my growth and leadership.
-          </p>
-        </div>
-
+        </header>
         <NBQSAAward />
-
-        {/* Cards */}
-        <div className="mt-8 grid gap-5 sm:mt-12 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ title, icon: Icon, accent, bulletColor, list }) => (
-            <div
-              key={title}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:border-white/20"
-            >
-              {/* Gradient overlay */}
-              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent} opacity-0 transition group-hover:opacity-100`} />
-
-              {/* Shine */}
-              <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-white/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-                    <Icon className="text-purple-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">{title}</h3>
-                </div>
-
-                <div className="mt-5 h-px w-full bg-white/10" />
-
-                <ul className="mt-6 space-y-4">
-                  {list.map((text) => (
-                    <li key={text} className="flex items-start gap-3 text-[#E1E8F0]">
-                      <HiCheckCircle className={`mt-0.5 shrink-0 text-xl ${bulletColor}`} />
-                      <span className="leading-relaxed">{text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Hover glow border */}
-              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-transparent transition group-hover:ring-white/10" />
+        <section
+          className="milestone-showcase"
+          id="milestones"
+          aria-labelledby="milestone-heading"
+        >
+          <header className="milestone-heading">
+            <div>
+              <p className="eyebrow">The work behind the milestones</p>
+              <h3 id="milestone-heading">
+                Learning. Leading.
+                <br />
+                <span>Making it count.</span>
+              </h3>
             </div>
-          ))}
-        </div>
+            <p>
+              A foundation in technology, a habit of learning, and a place in
+              the communities I care about.
+            </p>
+          </header>
+          <div className="milestone-grid">
+            <article
+              className="milestone-card milestone-academic"
+              aria-labelledby="academic-heading"
+            >
+              <div className="milestone-card-top">
+                <span className="milestone-category-icon">
+                  <TbSchool aria-hidden="true" />
+                </span>
+                <span className="milestone-year">Class of 2026</span>
+              </div>
+              <h4 id="academic-heading">Academic Achievements</h4>
+              <div className="milestone-gpa" aria-label="GPA 3.70 out of 4.00">
+                <strong>3.70</strong>
+                <span>/ 4.00 GPA</span>
+              </div>
+              <p className="milestone-honours">
+                <TbRosetteDiscountCheck aria-hidden="true" />
+                First Class Honours
+              </p>
+              <p className="milestone-degree">
+                B.Sc. (Hons) in Information Systems
+                <br />
+                <span>University of Colombo School of Computing</span>
+              </p>
+              <ul className="milestone-academic-list">
+                <li>
+                  <span className="milestone-stat">4</span>
+                  <div>
+                    <strong>Director’s List</strong>
+                    <span>Four semesters · UCSC</span>
+                  </div>
+                </li>
+                <li>
+                  <TbAward aria-hidden="true" />
+                  <div>
+                    <strong>NBQSA finalist</strong>
+                    <span>National ICT Awards · GoviSaviya · 2024</span>
+                  </div>
+                </li>
+                <li>
+                  <TbTrophy aria-hidden="true" />
+                  <div>
+                    <strong>Top 100 in Sri Lanka</strong>
+                    <span>IEEE Xtreme 18.0 · 2024</span>
+                  </div>
+                </li>
+              </ul>
+              <a className="milestone-card-link" href="#graduation">
+                Explore graduation memories
+              </a>
+            </article>
+            <article
+              className="milestone-card milestone-certifications"
+              aria-labelledby="certifications-heading"
+            >
+              <div className="milestone-card-top">
+                <span className="milestone-category-icon">
+                  <TbCertificate aria-hidden="true" />
+                </span>
+                <span className="milestone-year">Continuing to learn</span>
+              </div>
+              <h4 id="certifications-heading">Certifications</h4>
+              <p className="milestone-card-intro">
+                From API fundamentals to the building blocks of software.
+              </p>
+              <ul className="milestone-credential-list">
+                {certifications.map(
+                  ({ title, issuer, year, icon: Icon, tone }) => (
+                    <li className={`milestone-credential ${tone}`} key={title}>
+                      <div className="milestone-credential-meta">
+                        <span className="milestone-brand">
+                          <Icon aria-hidden="true" />
+                        </span>
+                        <time dateTime={year}>{year}</time>
+                      </div>
+                      <h5>{title}</h5>
+                      <p>{issuer}</p>
+                    </li>
+                  ),
+                )}
+              </ul>
+              <p className="milestone-card-note">
+                <TbCertificate aria-hidden="true" />3 certifications · API &
+                Java foundations
+              </p>
+            </article>
+            <article
+              className="milestone-card milestone-community"
+              aria-labelledby="community-heading"
+            >
+              <div className="milestone-card-top">
+                <span className="milestone-category-icon">
+                  <TbUsers aria-hidden="true" />
+                </span>
+                <span className="milestone-year">People & purpose</span>
+              </div>
+              <h4 id="community-heading">Extra-Curricular</h4>
+              <p className="milestone-card-intro">
+                Leading teams, making music, and showing up for my community.
+              </p>
+              <ul className="milestone-community-list">
+                {communities.map(
+                  ({ title, organization, roles, year, icon: Icon }) => (
+                    <li key={title}>
+                      <div className="milestone-community-meta">
+                        <span className="milestone-community-icon">
+                          <Icon aria-hidden="true" />
+                        </span>
+                        <span className="milestone-year">{year}</span>
+                      </div>
+                      <h5>{title}</h5>
+                      <span className="milestone-organization">
+                        {organization}
+                      </span>
+                      <p>{roles}</p>
+                    </li>
+                  ),
+                )}
+              </ul>
+              <Link className="milestone-card-link" href="/fun">
+                Explore Beyond Code
+              </Link>
+            </article>
+          </div>
+        </section>
       </div>
     </section>
   );
-};
-
-export default AchievementsSection;
+}

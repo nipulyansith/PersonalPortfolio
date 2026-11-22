@@ -1,96 +1,156 @@
 import { FaEye, FaJava } from "react-icons/fa";
 import {
-  SiTypescript, SiJavascript, SiPython, SiPhp, SiC, SiAngular,
-  SiReact, SiNextdotjs, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs,
-  SiExpress, SiFlask, SiMongodb, SiPostgresql, SiMysql, SiSqlite,
-  SiRedis, SiOpenai, SiLangchain, SiOpencv, SiMediapipe, SiNumpy,
-  SiPandas, SiDocker, SiBitbucket, SiGit, SiGithub, SiJira,
-  SiPostman, SiJest, SiLaravel,
+  SiTypescript,
+  SiJavascript,
+  SiPython,
+  SiPhp,
+  SiC,
+  SiAngular,
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiFlask,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiSqlite,
+  SiRedis,
+  SiOpenai,
+  SiLangchain,
+  SiOpencv,
+  SiMediapipe,
+  SiNumpy,
+  SiPandas,
+  SiDocker,
+  SiBitbucket,
+  SiGit,
+  SiGithub,
+  SiJira,
+  SiPostman,
+  SiJest,
+  SiLaravel,
 } from "react-icons/si";
 import {
-  TbDatabase, TbApi, TbBraces, TbLambda, TbBucket, TbWorld,
-  TbActivity, TbMail, TbBell, TbPackage, TbGitBranch, TbCloud,
-  TbUsers, TbBrandAws, TbCode, TbPresentation,
+  TbDatabase,
+  TbApi,
+  TbBraces,
+  TbLambda,
+  TbBucket,
+  TbWorld,
+  TbActivity,
+  TbMail,
+  TbBell,
+  TbPackage,
+  TbGitBranch,
+  TbCloud,
+  TbUsers,
+  TbBrandAws,
+  TbCode,
+  TbPresentation,
 } from "react-icons/tb";
 
-
 const technologyIcons = {
-  "typescript": [SiTypescript, "#60a5fa"],
-  "javascript": [SiJavascript, "#facc15"],
-  "python": [SiPython, "#fcd34d"],
-  "sql": [TbDatabase, "#7dd3fc"],
-  "php": [SiPhp, "#a5b4fc"],
-  "java": [FaJava, "#fb923c"],
-  "c": [SiC, "#93c5fd"],
-  "angular": [SiAngular, "#f87171"],
-  "react": [SiReact, "#67e8f9"],
-  "next.js": [SiNextdotjs, "#f1f5f9"],
-  "react native": [SiReact, "#67e8f9"],
-  "html": [SiHtml5, "#fb923c"],
-  "css": [SiCss3, "#60a5fa"],
-  "tailwind css": [SiTailwindcss, "#22d3ee"],
-  "node.js": [SiNodedotjs, "#4ade80"],
-  "express.js": [SiExpress, "#e2e8f0"],
-  "flask": [SiFlask, "#e2e8f0"],
-  "rest apis": [TbApi, "#c084fc"],
-  "json logic": [TbBraces, "#facc15"],
-  "mongodb": [SiMongodb, "#4ade80"],
-  "postgresql": [SiPostgresql, "#93c5fd"],
-  "mysql": [SiMysql, "#38bdf8"],
-  "sqlite": [SiSqlite, "#7dd3fc"],
-  "redis": [SiRedis, "#f87171"],
-  "openai api": [SiOpenai, "#6ee7b7"],
-  "langchain": [SiLangchain, "#a7f3d0"],
-  "opencv": [SiOpencv, "#4ade80"],
-  "yolo": [FaEye, "#c084fc"],
-  "mediapipe": [SiMediapipe, "#67e8f9"],
-  "numpy": [SiNumpy, "#60a5fa"],
-  "pandas": [SiPandas, "#c4b5fd"],
-  "aws api gateway": [TbBrandAws, "#fbbf24"],
-  "lambda": [TbLambda, "#fb923c"],
-  "s3": [TbBucket, "#86efac"],
-  "cloudfront": [TbWorld, "#c4b5fd"],
-  "cloudwatch": [TbActivity, "#f9a8d4"],
-  "sqs": [TbPackage, "#f472b6"],
-  "ses": [TbMail, "#fbbf24"],
-  "sns": [TbBell, "#f472b6"],
-  "codebuild": [TbCloud, "#86efac"],
-  "ecr": [TbPackage, "#fb923c"],
-  "docker": [SiDocker, "#38bdf8"],
-  "ci/cd": [TbGitBranch, "#c084fc"],
-  "bitbucket pipelines": [SiBitbucket, "#60a5fa"],
-  "git": [SiGit, "#fb923c"],
-  "github": [SiGithub, "#f1f5f9"],
-  "bitbucket": [SiBitbucket, "#60a5fa"],
-  "jira": [SiJira, "#60a5fa"],
-  "postman": [SiPostman, "#fb923c"],
-  "jest": [SiJest, "#fda4af"],
-  "studio 3t": [TbDatabase, "#86efac"],
-  "mongodb compass": [SiMongodb, "#4ade80"],
-  "agile/scrum": [TbUsers, "#c084fc"],
-  "laravel": [SiLaravel, "#f87171"],
-  "pptxgenjs": [TbPresentation, "#f9a8d4"],
-  "full-stack development": [TbCode, "#c4b5fd"],
+  typescript: [SiTypescript, "#3178c6"],
+  javascript: [SiJavascript, "#ad8500"],
+  python: [SiPython, "#ab7e18"],
+  sql: [TbDatabase, "#297e9f"],
+  php: [SiPhp, "#7162aa"],
+  java: [FaJava, "#c76824"],
+  c: [SiC, "#376fa2"],
+  angular: [SiAngular, "#c63d4e"],
+  react: [SiReact, "#12809a"],
+  "next.js": [SiNextdotjs, "#294137"],
+  "react native": [SiReact, "#12809a"],
+  html: [SiHtml5, "#c76824"],
+  css: [SiCss3, "#3178c6"],
+  "tailwind css": [SiTailwindcss, "#058ba3"],
+  "node.js": [SiNodedotjs, "#3a8b52"],
+  "express.js": [SiExpress, "#456255"],
+  flask: [SiFlask, "#456255"],
+  "rest apis": [TbApi, "#8460a6"],
+  "json logic": [TbBraces, "#ad8500"],
+  mongodb: [SiMongodb, "#3a8b52"],
+  postgresql: [SiPostgresql, "#376fa2"],
+  mysql: [SiMysql, "#1589ba"],
+  sqlite: [SiSqlite, "#297e9f"],
+  redis: [SiRedis, "#c63d4e"],
+  "openai api": [SiOpenai, "#17816c"],
+  langchain: [SiLangchain, "#36785f"],
+  opencv: [SiOpencv, "#3a8b52"],
+  yolo: [FaEye, "#8460a6"],
+  mediapipe: [SiMediapipe, "#12809a"],
+  numpy: [SiNumpy, "#3178c6"],
+  pandas: [SiPandas, "#7d69a5"],
+  "aws api gateway": [TbBrandAws, "#b47711"],
+  aws: [TbBrandAws, "#b47711"],
+  lambda: [TbLambda, "#c76824"],
+  s3: [TbBucket, "#43875b"],
+  cloudfront: [TbWorld, "#7d69a5"],
+  cloudwatch: [TbActivity, "#ad4e80"],
+  sqs: [TbPackage, "#bb4e81"],
+  ses: [TbMail, "#b47711"],
+  sns: [TbBell, "#bb4e81"],
+  codebuild: [TbCloud, "#43875b"],
+  ecr: [TbPackage, "#c76824"],
+  docker: [SiDocker, "#1589ba"],
+  "ci/cd": [TbGitBranch, "#8460a6"],
+  "bitbucket pipelines": [SiBitbucket, "#3178c6"],
+  git: [SiGit, "#c76824"],
+  github: [SiGithub, "#294137"],
+  bitbucket: [SiBitbucket, "#3178c6"],
+  jira: [SiJira, "#3178c6"],
+  postman: [SiPostman, "#c76824"],
+  jest: [SiJest, "#b85264"],
+  "studio 3t": [TbDatabase, "#43875b"],
+  "mongodb compass": [SiMongodb, "#3a8b52"],
+  "agile/scrum": [TbUsers, "#8460a6"],
+  laravel: [SiLaravel, "#c63d4e"],
+  pptxgenjs: [TbPresentation, "#ad4e80"],
+  "full-stack development": [TbCode, "#7d69a5"],
 };
 
-const aliases = { "yolov8": "yolo", "express": "express.js", "node": "node.js", "openai": "openai api" };
+const aliases = {
+  yolov8: "yolo",
+  express: "express.js",
+  node: "node.js",
+  openai: "openai api",
+};
 
 export default function TechnologyBadge({ name, compact = false }) {
   const key = name.toLowerCase();
-  const [Icon, color] = technologyIcons[aliases[key] || key] || [TbCode, "#c4b5fd"];
-
+  const [Icon, color] = technologyIcons[aliases[key] || key] || [
+    TbCode,
+    "#4f8170",
+  ];
   return (
-    <span className={`inline-flex max-w-full items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] text-sm font-medium text-white/75 transition-colors hover:border-purple-400/35 hover:bg-white/[0.065] ${compact ? "min-h-8 px-2.5 py-1" : "min-h-10 px-3 py-2"}`}>
-      <Icon aria-hidden="true" className={`${compact ? "h-4 w-4" : "h-5 w-5"} shrink-0`} style={{ color }} />
-      <span className="min-w-0 leading-snug">{name}</span>
+    <span
+      className={`tech-badge ${compact ? "is-compact" : ""}`}
+      style={{ "--tech-color": color }}
+    >
+      <span className="tech-badge-icon">
+        <Icon aria-hidden="true" />
+      </span>
+      <span>{name}</span>
     </span>
   );
 }
-
-export function TechnologyBadges({ items, label = "Technologies used", compact = true, className = "" }) {
+export function TechnologyBadges({
+  items,
+  label = "Technologies used",
+  compact = true,
+  className = "",
+}) {
   return (
-    <ul aria-label={label} className={`flex flex-wrap gap-2 ${className}`}>
-      {items.map((name) => <li key={name} className="min-w-0 max-w-full"><TechnologyBadge name={name} compact={compact} /></li>)}
+    <ul aria-label={label} className={`tech-badges ${className}`}>
+      {items.map((name) => (
+        <li key={name}>
+          <TechnologyBadge name={name} compact={compact} />
+        </li>
+      ))}
     </ul>
   );
 }

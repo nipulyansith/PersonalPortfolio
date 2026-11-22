@@ -1,182 +1,123 @@
 "use client";
-
-import React, { useState } from "react";
-import GithubIcon from "./../../public/images/github.png";
-import LinkedInIcon from "./../../public/images/linkedin.png";
-import Link from "next/link";
-import Image from "next/image";
-
-const EmailSection = () => {
-  const [emailSent, setEmailSent] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleSubmit = async (e) => {
+import { useState } from "react";
+export default function EmailSection() {
+  const [status, setStatus] = useState("idle"),
+    [message, setMessage] = useState("");
+  async function submit(e) {
     e.preventDefault();
-    setEmailSent(false);
-    setErrorMessage("");
-
-    const data = {
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
-    };
-
+    const form = e.currentTarget;
+    setStatus("sending");
+    setMessage("");
+    const data = Object.fromEntries(new FormData(form));
     try {
-      setIsSending(true);
       const response = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
-      if (response.ok) {
-        setEmailSent(true);
-        e.target.reset();
-      } else {
-        throw new Error("The contact form is temporarily unavailable. Please email nipulyansith26@gmail.com directly.");
-      }
+      if (!response.ok)
+        throw new Error(
+          "The contact form is temporarily unavailable. Please email nipulyansith26@gmail.com directly.",
+        );
+      setStatus("success");
+      setMessage("Thanks for reaching out. Your message is on its way.");
+      form.reset();
     } catch (error) {
-      setErrorMessage(error.message);
-    } finally {
-      setIsSending(false);
+      setStatus("error");
+      setMessage(error.message);
     }
-  };
-
+  }
   return (
-    <section id="contact" className="relative overflow-hidden py-12 sm:py-20">
-      {/* Background glow + subtle pattern */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-16 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl" />
-        <div className="absolute right-12 top-48 h-72 w-72 rounded-full bg-fuchsia-600/10 blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.35) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 xl:px-16">
-        {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-            <span className="h-2 w-2 rounded-full bg-purple-400" />
-            Contact
-          </p>
-
-          <h2 className="mt-5 text-3xl font-bold text-white tracking-tight sm:text-5xl">
-            Get in Touch
+    <section id="contact" className="section-block contact-section">
+      <div className="section-shell">
+        <header className="contact-heading">
+          <p className="eyebrow">Have something in mind?</p>
+          <h2>
+            Let’s make
+            <br />
+            something <span>good.</span>
           </h2>
-
-          <p className="mt-4 text-[#ADB7BE] text-base sm:text-lg leading-relaxed">
-            Have a project in mind, a question about my work, or an interest in
-            collaborating on PitchIQ? I’d love to hear from you.
-          </p>
-
-          <p className="mt-4 text-white/70">Mulleriyawa, Sri Lanka</p>
-          <a href="mailto:nipulyansith26@gmail.com" className="mt-3 inline-block break-all text-purple-300 underline-offset-4 hover:underline">nipulyansith26@gmail.com</a>
-
-          {/* Socials */}
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <Link
-              href="https://github.com/nipulyansith"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
-            >
-              <Image src={GithubIcon} alt="Github Icon" className="h-6 w-6" />
-              <span className="text-sm font-medium">GitHub</span>
-            </Link>
-
-            <Link
-              href="https://www.linkedin.com/in/nipul-yansith-183b8a156/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white/80 transition hover:bg-white/10 hover:text-white"
-            >
-              <Image src={LinkedInIcon} alt="LinkedIn Icon" className="h-6 w-6" />
-              <span className="text-sm font-medium">LinkedIn</span>
-            </Link>
+        </header>
+        <div className="contact-layout">
+          <div className="contact-copy">
+            <p>
+              A project, an opportunity, or a good conversation.
+              <br />
+              I’d love to hear from you.
+            </p>
+            <a className="contact-email" href="mailto:nipulyansith26@gmail.com">
+              nipulyansith26@gmail.com
+            </a>
+            <p className="muted">Mulleriyawa, Sri Lanka</p>
+            <div className="contact-socials">
+              <a
+                href="https://github.com/nipulyansith"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nipul-yansith-183b8a156/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a href="/Nipul_Yansith_CV.pdf" download>
+                Download CV
+              </a>
+            </div>
           </div>
-        </div>
-
-        {/* Form (single centered card — not the same grid look as About) */}
-        <div className="mx-auto mt-12 max-w-2xl">
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-8 shadow-xl backdrop-blur-md">
-            {/* top accent */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/60 to-transparent" />
-
-            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="email" className="text-white block text-sm mb-2">
-                  Your email
-                </label>
+          <form className="contact-form" onSubmit={submit}>
+            <div className="form-row">
+              <label>
+                Your email
                 <input
                   type="email"
-                  id="email"
-                  autoComplete="email"
                   name="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
                   required
-                  placeholder="jacob@gmail.com"
-                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
+                  maxLength={254}
                 />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="text-white block text-sm mb-2">
-                  Subject
-                </label>
+              </label>
+              <label>
+                What’s it about?
                 <input
-                  type="text"
-                  id="subject"
                   name="subject"
+                  placeholder="A new idea, perhaps?"
                   required
-                  placeholder="Just saying Hi :)"
-                  className="w-full rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
+                  maxLength={200}
                 />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="text-white block text-sm mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  id="message"
-                  rows={7}
-                  required
-                  placeholder="Hey Nipul, I have a question about your work..."
-                  className="w-full resize-none rounded-xl border border-white/10 bg-[#18191E]/70 px-4 py-3 text-base text-gray-100 placeholder-[#9CA2A9] outline-none transition focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSending}
-                className="group relative mt-2 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-3 font-semibold text-white transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isSending ? "Sending..." : "Send Message"}
-                <span className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100 shadow-[0_0_25px_rgba(168,85,247,0.35)]" />
-              </button>
-
-              {errorMessage && (
-                <p role="alert" className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">{errorMessage}</p>
-              )}
-
-              {emailSent && (
-                <div className="mt-2 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-300">
-                  ✅ Email sent successfully — I’ll get back to you soon!
-                </div>
-              )}
-            </form>
-          </div>
+              </label>
+            </div>
+            <label>
+              Your message
+              <textarea
+                name="message"
+                rows={3}
+                placeholder="Tell me a little about it…"
+                required
+                maxLength={6000}
+              />
+            </label>
+            <button
+              type="submit"
+              className="solid-button"
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "Sending…" : "Send message"}
+            </button>
+            <p
+              role={status === "error" ? "alert" : "status"}
+              className={`form-message ${status}`}
+            >
+              {message}
+            </p>
+          </form>
         </div>
       </div>
     </section>
   );
-};
-
-export default EmailSection;
+}

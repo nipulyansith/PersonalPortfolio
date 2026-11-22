@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import PageMotion from "./components/PageMotion";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,7 +15,8 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Nipul Yansith | Software Engineer",
-  description: "Software Engineer at Emojot specializing in Angular, TypeScript, Node.js, AWS, and AI-powered products. First Class Honours graduate and NBQSA Merit Award winner for PitchIQ.",
+  description:
+    "Software Engineer at Emojot specializing in Angular, TypeScript, Node.js, AWS, and AI-powered products. First Class Honours graduate and NBQSA Merit Award winner for PitchIQ.",
 };
 
 export default function RootLayout({ children }) {
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <PageMotion />
       </body>
     </html>
   );

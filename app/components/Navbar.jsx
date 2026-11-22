@@ -1,70 +1,155 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import NavLink from "./NavLink";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
-import MenuOverlay from "./MenuOverlay";
-
-const navlinks = [
-  { title: "About", href: "/#about" },
-  { title: "Graduation", href: "/#graduation" },
-  { title: "Projects", href: "/#projects" },
-  { title: "Experience", href: "/#experience" },
-  { title: "Research", href: "/#research" },
-  { title: "Contact", href: "/#contact" },
-  { title: "Beyond Code", href: "/fun" },
-  { title: "Blog", href: "/blog" },
+const links = [
+  ["About Me", "/#about"],
+  ["Portfolio", "/#projects"],
+  ["Experience", "/#experience"],
+  ["Blog", "/blog"],
+  ["Beyond Code", "/fun"],
 ];
-
 export default function Navbar() {
-  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const menuButtonRef = useRef(null);
+  const [activeSection, setActiveSection] = useState("top");
+  const [progress, setProgress] = useState(0);
+  const trigger = useRef(null);
   const pathname = usePathname();
-
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!navbarOpen) return;
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setNavbarOpen(false);
-        menuButtonRef.current?.focus();
+    let frame;
+    const update = () => {
+      setScrolled(window.scrollY > 24);
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(
+        range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0,
+      );
+      if (pathname === "/") {
+        let current = "top";
+        for (const id of [
+          "about",
+          "projects",
+          "experience",
+          "research",
+          "achievements",
+          "graduation",
+          "contact",
+        ]) {
+          const section = document.getElementById(id);
+          if (section && section.getBoundingClientRect().top <= 170)
+            current = id;
+        }
+        setActiveSection(current);
       }
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [navbarOpen]);
-
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    const observer = new ResizeObserver(schedule);
+    observer.observe(document.body);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        trigger.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [open]);
   return (
-    <nav aria-label="Primary" className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${scrolled || navbarOpen ? "border-white/10 bg-[#121212]/95 shadow-lg backdrop-blur-xl" : "border-white/10 bg-[#121212]"}`}>
-      <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-4 xl:px-6">
-        <Link href="/" onClick={() => setNavbarOpen(false)} aria-label="Nipul Yansith home" className="flex min-h-11 shrink-0 items-center gap-3 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-300">
-          <span aria-hidden="true" className="relative flex h-9 w-9 items-center justify-center">
-            <span className="absolute -translate-y-0.5 text-3xl font-extrabold leading-none text-purple-500">N</span>
-            <span className="absolute translate-x-1.5 translate-y-1.5 text-3xl font-extrabold leading-none text-fuchsia-500/70">Y</span>
-          </span>
-          <span className="text-sm font-semibold tracking-tight text-white/90 sm:text-base lg:hidden">Nipul Yansith</span>
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="site-header-inner">
+        <Link
+          href="/"
+          className="intro-monogram"
+          aria-label="Nipul Yansith home"
+          onClick={() => setOpen(false)}
+        >
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path
+              d="M9 35V13L28 35V13M20 13L30 25L40 13M30 25V36"
+              stroke="currentColor"
+              strokeWidth="2.8"
+              strokeLinecap="square"
+            />
+          </svg>
         </Link>
-        <button ref={menuButtonRef} type="button" onClick={() => setNavbarOpen((value) => !value)} aria-label={navbarOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={navbarOpen} aria-controls="mobile-navigation" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/85 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-300 lg:hidden">
-          {navbarOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+        <nav className="site-desktop-nav" aria-label="Primary">
+          {links.map(([label, href]) => (
+            <Link
+              href={href}
+              key={href}
+              aria-current={
+                pathname === "/" && href === `/#${activeSection}`
+                  ? "location"
+                  : pathname === href ||
+                      (!href.includes("#") && pathname.startsWith(`${href}/`))
+                    ? "page"
+                    : undefined
+              }
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <a className="site-talk" href="mailto:nipulyansith26@gmail.com">
+          Let’s talk
+        </a>
+        <button
+          ref={trigger}
+          type="button"
+          className="site-menu"
+          aria-expanded={open}
+          aria-controls="site-mobile-navigation"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setOpen(!open)}
+        >
+          {open ? "Close" : "Menu"}
+          <span
+            className={open ? "menu-lines is-open" : "menu-lines"}
+            aria-hidden="true"
+          >
+            <i />
+            <i />
+          </span>
         </button>
-        <ul className="hidden items-center gap-1 lg:flex">
-          {navlinks.map((link) => <NavLink key={link.href} {...link} active={pathname === link.href || (!link.href.includes("#") && pathname.startsWith(`${link.href}/`))} />)}
-        </ul>
       </div>
-      {navbarOpen && (
-        <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-white/10 bg-[#121212] lg:hidden">
-          <MenuOverlay links={navlinks} setNavbarOpen={setNavbarOpen} pathname={pathname} />
-        </div>
+      {open && (
+        <nav
+          id="site-mobile-navigation"
+          className="site-mobile-nav"
+          aria-label="Mobile navigation"
+        >
+          {links.map(([label, href]) => (
+            <Link key={href} href={href} onClick={() => setOpen(false)}>
+              {label}
+            </Link>
+          ))}
+          <a
+            href="/Nipul_Yansith_CV.pdf"
+            download
+            onClick={() => setOpen(false)}
+          >
+            Download CV
+          </a>
+        </nav>
       )}
-    </nav>
+      <div className="site-scroll-progress" aria-hidden="true">
+        <span style={{ transform: `scaleX(${progress})` }} />
+      </div>
+    </header>
   );
 }

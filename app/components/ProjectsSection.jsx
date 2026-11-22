@@ -1,15 +1,13 @@
 "use client";
-
-import React, { useMemo, useRef, useState } from "react";
-import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-
+import { useState } from "react";
+import Image from "next/image";
+import { TechnologyBadges } from "./TechnologyBadge";
 const projectData = [
   {
     id: 6,
     title: "PitchIQ",
-    description: "NBQSA 2026 Merit Award-winning cricket biomechanics analysis from a single side-on phone video. Research completed April 2026; now building a coach-focused web platform with annotated playback, session history, AI-generated PDF reports, and a chatbot.",
+    description:
+      "NBQSA 2026 Merit Award-winning cricket biomechanics analysis from a single side-on phone video. Research completed April 2026; now building a coach-focused web platform with annotated playback, session history, AI-generated PDF reports, and a chatbot.",
     imgUrl: "/images/kavisha2.png",
     tag: ["all", "web"],
     previewUrl: "#research",
@@ -24,8 +22,15 @@ const projectData = [
     imgUrl: "/images/pew.png",
     tag: ["all", "web"],
     dates: "Jun 2024 – Nov 2024",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "PostgreSQL"],
-    gitUrl: "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeasewebapp",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+    ],
+    gitUrl:
+      "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeasewebapp",
   },
   {
     id: 2,
@@ -49,7 +54,8 @@ const projectData = [
     imgUrl: "/images/pem.png",
     tag: ["all", "mobile"],
 
-    gitUrl: "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeaseMobile",
+    gitUrl:
+      "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeaseMobile",
   },
   {
     id: 4,
@@ -61,7 +67,8 @@ const projectData = [
     imgUrl: "/images/pem.png",
     tag: ["all", "mobile"],
 
-    gitUrl: "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeaseWardenMobile",
+    gitUrl:
+      "https://github.com/ParkEase-UrbanParkingManagementSystem/parkeaseWardenMobile",
   },
   {
     id: 5,
@@ -76,100 +83,103 @@ const projectData = [
   },
 ];
 
-const ProjectsSection = () => {
-  const reducedMotion = useReducedMotion();
+export default function ProjectsSection() {
   const [tag, setTag] = useState("all");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.05 });
-
-  const handleTagChange = (newTag) => setTag(newTag);
-
-  const filteredProjects = useMemo(
-    () => projectData.filter((project) => project.tag.includes(tag)),
-    [tag]
-  );
-
-  // smoother + slightly premium animation
-  const cardVariants = {
-    hidden: { opacity: 0, y: 24, scale: 0.98 },
-    show: { opacity: 1, y: 0, scale: 1 },
-  };
-
+  const filtered = projectData.filter((p) => p.tag.includes(tag));
   return (
-    <section id="projects" className="relative overflow-hidden py-12 sm:py-20">
-      {/* Background glow + subtle dots (not grid like About) */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-14 top-28 h-72 w-72 rounded-full bg-purple-600/10 blur-3xl" />
-        <div className="absolute right-10 bottom-10 h-80 w-80 rounded-full bg-fuchsia-600/10 blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.35) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 xl:px-16">
-        {/* Header */}
-        <div className="flex flex-col items-start gap-3 lg:flex-row lg:items-end lg:justify-between">
+    <section id="projects" className="section-block work-section">
+      <div className="section-shell">
+        <header className="section-heading">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-              <span className="h-2 w-2 rounded-full bg-purple-400" />
-              Work
-            </p>
-            <h2 className="mt-4 text-3xl font-bold text-white tracking-tight sm:text-5xl">
-              My Projects
-            </h2>
-            <p className="mt-2 max-w-2xl text-[#ADB7BE]">
-              A selection of web and mobile projects I’ve built across university and real-world work.
-            </p>
+            <p className="eyebrow">Selected portfolio</p>
+            <h2 className="section-title">Ideas, made real.</h2>
           </div>
-
-          {/* Tags */}
-          <div className="mt-3 shrink-0 lg:mt-0">
-            <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-sm">
-              <ProjectTag onClick={handleTagChange} name="all" isSelected={tag === "all"} />
-              <ProjectTag onClick={handleTagChange} name="web" isSelected={tag === "web"} />
-              <ProjectTag onClick={handleTagChange} name="mobile" isSelected={tag === "mobile"} />
+          <div className="section-heading-aside">
+            <p>
+              Web, mobile, and a little machine intelligence. A selection of
+              things I’ve built.
+            </p>
+            <div className="project-filters" aria-label="Filter projects">
+              {[
+                ["all", "All work"],
+                ["web", "Web"],
+                ["mobile", "Mobile"],
+              ].map(([value, label]) => (
+                <button
+                  type="button"
+                  key={value}
+                  onClick={() => setTag(value)}
+                  aria-pressed={tag === value}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
+            <p className="project-filter-status" role="status">
+              {filtered.length} projects to explore
+            </p>
           </div>
-        </div>
-
-        {/* Cards */}
-        <ul
-          ref={ref}
-          className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.li
+        </header>
+        <div className="project-grid" key={tag}>
+          {filtered.map((project) => (
+            <article
+              className={`work-item work-${project.id}`}
               key={project.id}
-              variants={cardVariants}
-              initial={reducedMotion ? false : "hidden"}
-              animate={isInView || reducedMotion ? "show" : "hidden"}
-              transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.08 }}
             >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                imgUrl={project.imgUrl}
-                gitUrl={project.gitUrl}
-                previewUrl={project.previewUrl}
-                technologies={project.technologies}
-                dates={project.dates}
+              <a
+                className="work-image"
+                href={project.previewUrl || project.gitUrl}
+                target={
+                  project.gitUrl && !project.previewUrl ? "_blank" : undefined
+                }
+                rel={
+                  project.gitUrl && !project.previewUrl
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                aria-label={
+                  project.previewUrl
+                    ? `Explore ${project.title}`
+                    : `View code for ${project.title}`
+                }
+              >
+                <Image
+                  src={project.imgUrl}
+                  alt={`${project.title} project`}
+                  fill
+                  sizes="(max-width: 760px) 90vw, 45vw"
+                />
+                <span className="work-image-action">
+                  {project.previewUrl ? "Explore project" : "View source"}
+                </span>
+                {project.id === 6 && (
+                  <span className="work-award">NBQSA Merit Award · 2026</span>
+                )}
+              </a>
+              <div className="work-meta">
+                <h3>{project.title}</h3>
+                <span>{project.dates || "Personal project"}</span>
+              </div>
+              <p className="work-description">{project.description}</p>
+              <TechnologyBadges
+                items={project.technologies}
+                label={`${project.title} technologies`}
               />
-            </motion.li>
+            </article>
           ))}
-        </ul>
-
-        {/* Optional footer hint */}
-        <div className="mt-10 text-center text-sm text-white/50">
-          Want to see more? Check my <a href="https://github.com/nipulyansith" className="inline-flex min-h-11 items-center text-purple-300 hover:underline">GitHub</a> for additional repositories and experiments.
+        </div>
+        <div className="section-endnote">
+          <p>More experiments. More things in the making.</p>
+          <a
+            className="text-link"
+            href="https://github.com/nipulyansith"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore my GitHub
+          </a>
         </div>
       </div>
     </section>
   );
-};
-
-export default ProjectsSection;
+}

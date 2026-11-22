@@ -1,20 +1,11 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
+import { TbPlayerPause, TbPlayerPlay } from "react-icons/tb";
 import TechnologyBadge from "./TechnologyBadge";
-
 const skillGroups = [
   {
     title: "Languages",
-    skills: [
-      "TypeScript",
-      "JavaScript",
-      "Python",
-      "SQL",
-      "PHP",
-      "Java",
-      "C",
-    ],
+    skills: ["TypeScript", "JavaScript", "Python", "SQL", "PHP", "Java", "C"],
   },
   {
     title: "Frontend & Mobile",
@@ -30,23 +21,11 @@ const skillGroups = [
   },
   {
     title: "Backend",
-    skills: [
-      "Node.js",
-      "Express.js",
-      "Flask",
-      "REST APIs",
-      "JSON Logic",
-    ],
+    skills: ["Node.js", "Express.js", "Flask", "REST APIs", "JSON Logic"],
   },
   {
     title: "Databases & Caching",
-    skills: [
-      "MongoDB",
-      "PostgreSQL",
-      "MySQL",
-      "SQLite",
-      "Redis",
-    ],
+    skills: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Redis"],
   },
   {
     title: "AI & Computer Vision",
@@ -94,40 +73,50 @@ const skillGroups = [
   },
 ];
 
-function SkillRow({ title, skills, reverse }) {
-  const viewportRef = useRef(null);
-  const groupRef = useRef(null);
+function SkillRow({ title, skills, reverse, paused }) {
+  const viewport = useRef(null),
+    group = useRef(null);
   const [overflowing, setOverflowing] = useState(false);
-
   useEffect(() => {
-    const viewport = viewportRef.current;
-    const group = groupRef.current;
-    const measure = () => setOverflowing(group.scrollWidth > viewport.clientWidth + 1);
+    const measure = () =>
+      setOverflowing(
+        group.current.scrollWidth > viewport.current.clientWidth + 1,
+      );
     const observer = new ResizeObserver(measure);
-    observer.observe(viewport);
-    observer.observe(group);
+    observer.observe(viewport.current);
+    observer.observe(group.current);
     measure();
     return () => observer.disconnect();
   }, []);
-
   return (
-    <div className="grid min-w-0 gap-2 py-3 md:grid-cols-[11rem_minmax(0,1fr)] md:items-center md:gap-5">
-      <h4 className="text-sm font-semibold text-purple-200">{title}</h4>
+    <div className="skill-row">
+      <h4>{title}</h4>
       <div
-        ref={viewportRef}
-        className={`skills-marquee min-w-0 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-300 ${overflowing ? "is-scrolling" : ""}`}
-        style={{ "--skills-duration": `${skills.length * 6}s` }}
+        ref={viewport}
+        className={`skills-marquee ${overflowing ? "is-scrolling" : ""} ${paused ? "is-paused" : ""}`}
         tabIndex={overflowing ? 0 : undefined}
         role="region"
         aria-label={`${title} technologies`}
+        style={{ "--skills-duration": `${Math.max(26, skills.length * 4)}s` }}
       >
-        <div className={`skills-marquee-track ${reverse ? "skills-marquee-track-reverse" : ""}`}>
-          <ul ref={groupRef} className="skills-marquee-group" aria-label={title}>
-            {skills.map((name) => <li key={name} className="shrink-0 whitespace-nowrap"><TechnologyBadge name={name} compact /></li>)}
+        <div className={`skills-marquee-track ${reverse ? "is-reversed" : ""}`}>
+          <ul ref={group} className="skills-marquee-group">
+            {skills.map((name) => (
+              <li key={name}>
+                <TechnologyBadge name={name} compact />
+              </li>
+            ))}
           </ul>
           {overflowing && (
-            <ul className="skills-marquee-group skills-marquee-copy" aria-hidden="true">
-              {skills.map((name) => <li key={name} className="shrink-0 whitespace-nowrap"><TechnologyBadge name={name} compact /></li>)}
+            <ul
+              className="skills-marquee-group skills-marquee-copy"
+              aria-hidden="true"
+            >
+              {skills.map((name) => (
+                <li key={name}>
+                  <TechnologyBadge name={name} compact />
+                </li>
+              ))}
             </ul>
           )}
         </div>
@@ -135,18 +124,67 @@ function SkillRow({ title, skills, reverse }) {
     </div>
   );
 }
-
 export default function TechnicalSkills() {
+  const [paused, setPaused] = useState(false),
+    [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduced(media.matches);
+      if (media.matches) setPaused(true);
+    };
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   return (
-    <section id="technical-skills" aria-labelledby="technical-skills-heading" className="relative mt-12 min-w-0 sm:mt-16">
-      <div aria-hidden="true" className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-fuchsia-500/5 blur-2xl" />
-      <div className="relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] px-4 py-5 sm:rounded-3xl sm:p-6 lg:p-8">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/60 to-transparent" />
-        <h3 id="technical-skills-heading" className="text-2xl font-semibold sm:text-3xl">Technical Skills</h3>
-        <p className="mt-2 max-w-xl text-base leading-relaxed text-white/60">The tools behind my web, mobile, and AI-powered products.</p>
-        <div className="mt-4 divide-y divide-white/[0.06]">
-          {skillGroups.map(({ title, skills }, index) => <SkillRow key={title} title={title} skills={skills} reverse={index % 2 === 1} />)}
-        </div>
+    <section
+      id="technical-skills"
+      className="skills-section"
+      aria-labelledby="skills-heading"
+    >
+      <div className="skills-heading">
+        <p className="eyebrow">My toolkit</p>
+        <h3 id="skills-heading">
+          The tools
+          <br />
+          behind the work.
+        </h3>
+        <p className="muted">
+          From the first component to the final deployment.
+        </p>
+        <button
+          type="button"
+          className="motion-control"
+          onClick={() => setPaused(!paused)}
+          aria-pressed={paused}
+          disabled={reduced}
+        >
+          {paused ? (
+            <TbPlayerPlay aria-hidden="true" />
+          ) : (
+            <TbPlayerPause aria-hidden="true" />
+          )}
+          {reduced
+            ? "Motion reduced"
+            : paused
+              ? "Resume motion"
+              : "Pause motion"}
+        </button>
+        <span className="skills-hint">
+          Hover or focus a row to take a closer look.
+        </span>
+      </div>
+      <div className="skill-rows">
+        {skillGroups.map(({ title, skills }, index) => (
+          <SkillRow
+            key={title}
+            title={title}
+            skills={skills}
+            reverse={index % 2 === 1}
+            paused={paused}
+          />
+        ))}
       </div>
     </section>
   );
